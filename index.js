@@ -1,0 +1,25 @@
+import Database from "./classes/Database.js"
+import Bot from "./classes/Bot.js"
+import {Intents} from "discord.js"
+import "dotenv/config"
+
+const database = new Database()
+
+const client = new Bot({
+    intents:[
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS   
+    ],
+    prefix: ".",
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+    })
+
+client.loadEvents()
+client.loadCommands()
+client.loadLanguages()
+
+
+database.connect()
+
+client.start(process.env.TOKEN)
