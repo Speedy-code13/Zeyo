@@ -1,7 +1,9 @@
 import path from "path"
 import { fileURLToPath} from "url"
 import fs from "fs"
-import { Client, Collection, MessageEmbed } from "discord.js"
+import GuildSettingsModel from "../models/GuildSettingsModel.js";
+import {Client, Collection, MessageEmbed } from "discord.js"
+import initEmbeds from "../functions/initEmbeds.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))                      
 
@@ -23,7 +25,7 @@ class Bot extends Client {
         this.embeds = new Map()
         this.defaultLang = "en"
 
-        this.initEmbeds()
+        initEmbeds(this)
     }
 
     async start(token) 
@@ -41,6 +43,15 @@ class Bot extends Client {
             event.startListener()
             this.events.set(eventName, event)
         })
+    }
+    getLocale(language, string, ...vars)
+    {
+        let locale = this.languages.get(language)[string];
+
+        let count = 0;
+        locale = locale.replace(/%VAR%/g, () => vars[count] !== null ? vars[count] : "%VAR%");
+
+         return locale;
     }
 
     loadCommands()
@@ -68,71 +79,18 @@ class Bot extends Client {
         return this.commands.get(commandName.split(" ")[0].toLowerCase())
     }
 
-    initEmbeds()
+    async getGuildSettings(guild)
     {
-        this.embeds.set('error', string => {
-            let embed = new MessageEmbed()
-            .setColor('RED')
-            .setDescription( '😑  ' + string)
-            return embed
-        })
-        this.embeds.set('success', string => {
-            let embed = new MessageEmbed()
-            .setColor('GREEN')
-            .setDescription( '😎  ' + string)
-            return embed
-        })
-
-        this.embeds.set('setlang_help', description =>{
-            const args = {
-                description: description,
-                usage: `${this.prefix}setlang [language]{fr, en}`,
-                example: `${this.prefix}setlang en`,
-                commandName : 'setlang'
-            }
-            return this.helpEmbed(args)
-        })
-
-        this.embeds.set('rr_help', description => {
-            const args = {
-                description:description,
-                usage: `${this.prefix}rr [channel] [message id] [role] [emoji]`,
-                example: `${this.prefix}rr #general 992092550179594360 @cowboy 🤠`,
-                commandName : 'rr'
-            }
-            return this.helpEmbed(args)
-        })
-
-        this.embeds.set('rrd_help', description => {
-            const args = {
-                description:description,
-                usage: `${this.prefix}rr [message id]`,
-                example: `${this.prefix}rrd 992092550179594360`,
-                commandName : 'rrd'
-            }
-            return this.helpEmbed(args)
-        })
-    }
-
-    helpEmbed(args)
-    {
-        var embed = new MessageEmbed()
-        .setColor('BLUE')
-        .setTitle('Command: ' + this.prefix + args.commandName)
-        .setDescription(`**Description:** ${args.description}`)
-        .addFields([
+        let guildSettings = await GuildSettingsModel.findOne({guild_id: guild.id}).catch(async (error) => { 
+            if(error)
             {
-                name: 'Usage:',
-                value : args.usage    
-            },
-            {
-                name: 'Example:',
-                value: args.example
+                guildSettings = await GuildSettingsModel.create({guild_id:guild.id}, error => {if(error) console.log(error)})
+                console.log(error)
+                return null
             }
+        })
 
-            ]
-        )
-        return embed
+        return guildSettings
     }
 }
 

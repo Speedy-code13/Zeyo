@@ -6,16 +6,13 @@ import GuildSettingsModel from "../models/GuildSettingsModel.js";
 class Rrd extends Command{
     async run(message)
     {
-        var guildSettings = await this.getGuildSettings(message)
+        var guildSettings = await this.client.getGuildSettings(message.guild)
         this.lang = guildSettings.lang
+        
         if(!guildSettings) return
 
-        const userMember = await message.guild.members.fetch(message.author)
-        if(!userMember.permissions.has(Permissions.FLAGS.ADMINISTRATOR)){
-            this.sendEmbed(message, 'missing_permission', 'error')
-
-            return
-        }
+        if(!await this.isAdministrator(message)) return
+        
         let args = this.formatArgs(message)
 
         if(!this.areValid(args, 1)) {  this.sendEmbed(message, 'rrd_success', 'rrd_help'); return}

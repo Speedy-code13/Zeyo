@@ -7,7 +7,6 @@ class MessageReactionRemove extends Event{
         await onReaction(reaction, user, false)
     }
 
-
 }
 
 export default MessageReactionRemove

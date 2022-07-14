@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js"
+import { MessageEmbed, Permissions } from "discord.js"
 import GuildSettingsModel from "../models/GuildSettingsModel.js";
 
 class Command{
@@ -46,47 +46,31 @@ class Command{
         var roleId = arg.substring(3, arg.length - 1)
         return  message.guild.roles.resolve(roleId)
     }
-    
-   
-
-    async getGuildSettings(message)
-    {
-        let guildSettings = await GuildSettingsModel.findOne({guild_id: message.guild.id}).catch(error => { 
-            if(error)
-            {
-                guildSettings = await GuildSettingsModel.create({guild_id:guild.id}, error => {if(error) console.log(error)})
-                console.log(error)
-                return null
-            }
-        })
-
-        return guildSettings
-    }
-
     getLocale(string, ...vars)
     {
-        let locale = this.client.languages.get(this.language)[string];
-     
-        let count = 0;
-        try{
-            locale = locale.replace(/%VAR%/g, () => vars[count] !== null ? vars[count] : "%VAR%")
-        }
-        catch{
-            console.log(string)
-        }
-     
-        return locale;
+        return this.client.getLocale(this.language,string, ...vars);
      }
 
     sendEmbed(message, string, embedType, ...vars)
     {
-        message.channel.send({embeds:[this.client.embeds.get(embedType)(this.getLocale(string, vars))]})
+        message.channel.send({embeds:[this.client.embeds.get(embedType)(this.getLocale(string, vars), this.lang)]})
     }
     
     async useGuildLang(message)
     {
-        var guildSettings = await this.getGuildSettings(message)
+        var guildSettings = await this.client.getGuildSettings(message)
         this.lang = guildSettings.lang
+    }
+
+    async isAdministrator(message)
+    {
+        const userMember = await message.guild.members.fetch(message.author)
+        if(!userMember.permissions.has(Permissions.FLAGS.ADMINISTRATOR)){
+            this.sendEmbed(message, 'missing_permission', 'error')
+            return false
+        }
+
+        return true
     }
 }
 
