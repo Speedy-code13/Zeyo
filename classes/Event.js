@@ -5,6 +5,7 @@ class Event{
         this.name = name
 
         this._listener = this._run.bind(this)
+        this.lang = "en"
     }
 
     async _run(...args)
@@ -27,6 +28,10 @@ class Event{
         this.client.off(this.name, this._listener);
     }
 
+    sendEmbed(message, string, embedType, ...vars)
+    {
+        message.channel.send({embeds:[this.client.embeds.get(embedType)(this.client.getLocale(this.lang, string, vars), this.lang)]})
+    }
  
 }
 

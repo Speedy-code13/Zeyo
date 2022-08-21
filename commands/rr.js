@@ -1,34 +1,36 @@
 import Command from "../classes/Command.js";
 import { Permissions} from 'discord.js'
 import RrMessageModel from "../models/RrMessageModel.js";
+import isUserAdministrator from "../functions/isUserAdministrator.js";
+
 
 class Rr extends Command{
-    async run(message){
-        await this.useGuildLang(message.guild)
+    async run(guildSettings, message){
 
-        if(!await this.isAdministrator(message)) return
+        if(!await isUserAdministrator(message, this.sendEmbed)) return
+
         await this.addReactionRole(message)
     }
 
    async addReactionRole(message)
     {
-        let args = this.formatArgs(message) 
+        const args = this.formatArgs(message) 
 
         if(!this.areValid(args, 5)){ this.sendEmbed(message, 'rr_desc', 'rr_help'); return}
 
-        var channel =  this.getChannelFromArg(args[1])
+        const channel = this.getChannelFromArg(args[1])
 
         if(channel == undefined) {   this.sendEmbed(message, 'invalid_channel', 'error'); return}
 
-        var roleMessage = await this.getMessageFromArg(args[2], channel)
+        const roleMessage = await this.getMessageFromArg(args[2], channel)
     
         if(roleMessage === undefined) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
 
-        var role = this.getRoleFromArg(args[3], message)
+        const role = this.getRoleFromArg(args[3], message)
 
         if(role == null) { this.sendEmbed(message, 'invalid_role', 'error'); return}
  
-        var emoji = args[4]
+        const emoji = args[4]
 
         try {roleMessage.react(emoji)}
 
@@ -38,7 +40,7 @@ class Rr extends Command{
             await this.saveReactionRole(message.guild.id, message.channel.id, roleMessage.id, emoji, role.id, message)
 
         if(args[0] === 'remove')
-         await this.removeReactionRole(emoji, role.id, message)
+           await this.removeReactionRole(emoji, role.id, message)
 
     }
     async removeReactionRole(messageId, emojiId, message)

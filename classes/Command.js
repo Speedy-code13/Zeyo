@@ -1,5 +1,6 @@
 import { MessageEmbed, Permissions } from "discord.js"
 import GuildSettingsModel from "../models/GuildSettingsModel.js";
+import sendEmbed from "../functions/sendEmbed.js";
 
 class Command{
     constructor(client, name)
@@ -8,11 +9,20 @@ class Command{
         this.name = name
         this.language = "en"
     }
+    async _run(guildSettings, ...args)
+    {
+        try{
+            await this.run(guildSettings, ...args)
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
     areValid(args, number)
     {
-        if(args.length === 0) return false
+        if(args.length == 0) return false
         for(let i = 0; i < number; i++){
-            if(args[i] === undefined && args[i] === null) return false
+            if(args[i] == undefined && args[i] == null) return false
         }
         return true
     }
@@ -49,29 +59,16 @@ class Command{
     getLocale(string, ...vars)
     {
         return this.client.getLocale(this.language,string, ...vars);
-     }
-
-    sendEmbed(message, string, embedType, ...vars)
-    {
-        message.channel.send({embeds:[this.client.embeds.get(embedType)(this.getLocale(string, vars), this.lang)]})
     }
     
+    sendEmbed(...args){ sendEmbed(args) } 
+   
     async useGuildLang(message)
     {
         var guildSettings = await this.client.getGuildSettings(message)
         this.lang = guildSettings.lang
     }
 
-    async isAdministrator(message)
-    {
-        const userMember = await message.guild.members.fetch(message.author)
-        if(!userMember.permissions.has(Permissions.FLAGS.ADMINISTRATOR)){
-            this.sendEmbed(message, 'missing_permission', 'error')
-            return false
-        }
-
-        return true
-    }
 }
 
 export default Command

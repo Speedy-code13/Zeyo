@@ -4,15 +4,16 @@ export default async function getSvStats(guild)
     let onlineMembers = 0
     let offlineMembers = 0
 
-    let allMembers = await guild.members.fetch()
-    allMembers.forEach(member => {
-        if(!member.user.bot){
-            realMembers++
+    const allMembers = await guild.members.fetch()
+    
+        allMembers.forEach(member => {
+        if(member.user.bot) return
 
-            if(member.presence.status === "offline") offlineMembers++
-            else onlineMembers++
-        }  
+        realMembers++
+        
+        if(!member.presence || member.presence.status == "offline") offlineMembers++
+        else onlineMembers++
     }); 
 
-    return `👥: ${realMembers} 🟢: ${onlineMembers} 🔴: ${offlineMembers}`
+    return(`👥: ${realMembers} 🟢: ${onlineMembers} 🔴: ${offlineMembers}`)
 }

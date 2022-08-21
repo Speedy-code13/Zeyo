@@ -1,17 +1,13 @@
 import RrMessageModel from "../models/RrMessageModel.js";
 import Command from "../classes/Command.js";
-import { Guild, Permissions} from 'discord.js'
 import GuildSettingsModel from "../models/GuildSettingsModel.js";
+import isUserAdministrator from "../functions/isUserAdministrator.js";
+
 
 class Rrd extends Command{
-    async run(message)
+    async run(guildSettings, message)
     {
-        var guildSettings = await this.client.getGuildSettings(message.guild)
-        this.lang = guildSettings.lang
-        
-        if(!guildSettings) return
-
-        if(!await this.isAdministrator(message)) return
+        if(!await isUserAdministrator(message, this.sendEmbed)) return
         
         let args = this.formatArgs(message)
 

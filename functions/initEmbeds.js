@@ -48,9 +48,19 @@ export default function initEmbeds(client)
     client.embeds.set('svstats_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}svstats on\n${client.prefix}svstats off`,
+            usage: `${client.prefix}svstats on/off`,
             example: `${client.prefix}svstats on\n${client.prefix}svstats off`,
             commandName : 'svstats'
+        }
+        return helpEmbed(client, args, lang)
+    })
+
+    client.embeds.set('links_help', (description, lang) => {
+        const args = {
+            description:description,
+            usage: `${client.prefix}links on/off [channel]\n${client.prefix}links on/off everywhere(rule for all channels)`,
+            example: `${client.prefix}links on/off #general\n${client.prefix}links off everywhere`,
+            commandName : 'links'
         }
         return helpEmbed(client, args, lang)
     })

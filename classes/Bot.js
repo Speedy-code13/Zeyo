@@ -4,6 +4,7 @@ import fs from "fs"
 import GuildSettingsModel from "../models/GuildSettingsModel.js";
 import {Client, Collection, MessageEmbed } from "discord.js"
 import initEmbeds from "../functions/initEmbeds.js";
+import createStatsInterval from "../functions/createStatsInterval.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))                      
 
@@ -20,11 +21,13 @@ class Bot extends Client {
         
         this.prefix = args.prefix
         this.commands = new Collection()
+        this.statsIntervals = new Collection()
         this.events = new Collection()
         this.languages = new Map()
         this.embeds = new Map()
         this.defaultLang = "en"
 
+        this.initStatsIntervals()
         initEmbeds(this)
     }
 
@@ -47,6 +50,8 @@ class Bot extends Client {
     getLocale(language, string, ...vars)
     {
         let locale = this.languages.get(language)[string];
+
+        if(locale == undefined) return "string missing in current language(development bug)"
 
         let count = 0;
         locale = locale.replace(/%VAR%/g, () => vars[count] !== null ? vars[count] : "%VAR%");
@@ -84,13 +89,26 @@ class Bot extends Client {
         let guildSettings = await GuildSettingsModel.findOne({guild_id: guild.id}).catch(async (error) => { 
             if(error)
             {
-                guildSettings = await GuildSettingsModel.create({guild_id:guild.id}, error => {if(error) console.log(error)})
-                console.log(error)
+                guildSettings =  GuildSettingsModel.create({guild_id:guild.id}, error => {if(error) console.log(error)})
                 return null
             }
         })
 
         return guildSettings
+    }
+
+    async initStatsIntervals()
+    {
+        const guildsSettings = await GuildSettingsModel.find()
+
+        guildsSettings.forEach(async (guildSettings) =>{
+            if(guildSettings.stats_channel_id == undefined) return
+
+            const interval = createStatsInterval(this, guildSettings)
+
+            this.statsIntervals.set(guildSettings.id, interval)
+            
+        })
     }
 }
 

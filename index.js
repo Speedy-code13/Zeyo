@@ -21,7 +21,6 @@ client.loadEvents()
 client.loadCommands()
 client.loadLanguages()
 
-
 database.connect()
 
 client.start(process.env.TOKEN)

@@ -1,4 +1,4 @@
-var lang = {
+const lang = {
     greeting : "Hello",
     invalid_channel : "The specified channel is invalid.",
     invalid_message_id : "The specified message id is invalid. ",
@@ -18,11 +18,18 @@ var lang = {
     rrd_desc: "Unbind all emojis from roles on a specific message.",
     svstats_desc: "Manage the channel to hold guild member statistics.",
     svstats_on_fail: "A server statistics channel already exists.",
-    svstats_on_success: "Successfully set the server statistics channel.",
+    svstats_on_success: "Successfully setted up the server statistics channel.",
     svstats_off_success: "Successfully removed the server statistics channel/category.",
     svstats_off_fail: "Couldn't find the server statistics channel.",
     usage:"Usage:",
-    example:"Example:"
+    example:"Example:",
+    links_desc : "Disable/Enable the ability for members to send links.",
+    links_not_allowed: "Links aren't allowed, %VAR%!",
+    links_off_channel_success: "Succesfully disabled links in the specified channel.",
+    links_on_channel_success: "Succesfully enabled links in the specified channel.",
+    links_off_channel_fail : "The specified channnel already doesn't allow links.",
+    links_on_channel_fail : "The specified channel already allows links.",
+    links_everywhere_success : "Successfully applied the links rule to every channel in the server."
 };
-
+  
 export default lang

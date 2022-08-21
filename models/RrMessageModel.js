@@ -8,7 +8,7 @@ const rrMessageSchema = new mongoose.Schema({
     role_emoji : {
         type: Map,
         of: String
-        }
+    }
 })
 
 export default mongoose.model('Role Reaction Message', rrMessageSchema)

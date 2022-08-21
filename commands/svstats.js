@@ -1,20 +1,19 @@
 import Command from "../classes/Command.js";
+import createStatsInterval from "../functions/createStatsInterval.js";
+import setSvStats from "../functions/setSvStats.js";
 import getSvStats from "../functions/getSvStats.js";
+import isUserAdministrator from "../functions/isUserAdministrator.js";
+
 
 class SvStats extends Command{
-    async run(message)
+    async run(guildSettings, message)
     {
-        var guildSettings = await this.client.getGuildSettings(message.guild)
-        if(!guildSettings) return
-
-        this.lang = guildSettings.lang
-
         var args = this.formatArgs(message)
 
-        if(!await this.isAdministrator(message)) return
+        if(!await isUserAdministrator(message, this.sendEmbed)) return
 
         if(args[0] === 'off') {await this.subCmdOff(message, guildSettings); return}
-        if(args[0] === 'on') {await this.subCmdOn(message, guildSettings, args); return}
+        if(args[0] === 'on') {await this.subCmdOn(message, guildSettings); return}
 
         this.sendEmbed(message, 'svstats_desc', 'svstats_help'); return
     }
@@ -22,11 +21,15 @@ class SvStats extends Command{
     async subCmdOff(message, guildSettings)
     {
         const channel = this.client.channels.cache.get(guildSettings.stats_channel_id)
-        const category = channel.parent
         
         if(channel === undefined){this.sendEmbed(message, 'svstats_off_fail', 'error'); return} 
+        
+        const category = channel.parent
+
+        this.stopUpdatingStats(guildSettings)
 
         guildSettings.stats_channel_id = undefined
+
         await guildSettings.save()
 
         try
@@ -40,24 +43,33 @@ class SvStats extends Command{
            return
         }
 
-      
         this.sendEmbed(message, 'svstats_off_success', 'success')
     }
+
+    stopUpdatingStats(guildSettings)
+    {
+        const thisIntervalId = this.client.statsIntervals.get(guildSettings.guild_id)
+        clearInterval(thisIntervalId)
+    }
+
     async subCmdOn(message, guildSettings)
     {
-        if(guildSettings.stats_channel_id !== undefined){this.sendEmbed(message, 'svstats_on_fail', 'error'); return}
-        var channel = await this.createStatsChannel(message)
-
-        if(channel === undefined) return
-
+        if(guildSettings.stats_channel_id != undefined){this.sendEmbed(message, 'svstats_on_fail', 'error'); return}
+        
+        var channel = await this.createStatsChannel(message, guildSettings)
+        
+        if(channel == undefined) {this.sendEmbed(message, 'bot_missing_permission', 'error'); return }
+        
         guildSettings.stats_channel_id = channel.id
 
         await guildSettings.save()
 
+        const interval = createStatsInterval(this.client, guildSettings)
+        this.client.statsIntervals.set(guildSettings.guild_id, interval)
         this.sendEmbed(message, 'svstats_on_success', 'success')
     }
 
-    async createStatsChannel(message)
+    async createStatsChannel(message, guildSettings)
     {
         try{
             const channelManager = message.guild.channels
@@ -67,9 +79,9 @@ class SvStats extends Command{
                 type:'GUILD_CATEGORY',
                 position: 0
             })
-    
             const channelName = await getSvStats(message.guild)
-            var channel = await channelManager.create(channelName, {
+    
+            const channel = await channelManager.create(channelName, {
                 type: 'GUILD_VOICE',
                 parent: svStatsCategory, 
                 permissionsOverwrites: [{
@@ -77,14 +89,13 @@ class SvStats extends Command{
                     deny: ['CONNECT']
                   }]
             })
+            return channel
         }
         catch(error)
         {
             console.error(error)
-            this.sendEmbed(message, 'bot_missing_permission', 'error')
+            return undefined
         }
-
-        return channel
     }   
     
 }

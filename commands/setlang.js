@@ -1,18 +1,15 @@
 import Command from "../classes/Command.js";
 import { Permissions} from 'discord.js'
+import isUserAdministrator from "../functions/isUserAdministrator.js";
+
 
 
 class SetLang extends Command{
-    async run(message)
+    async run(guildSettings, message)
     {
-        var guildSettings = await this.client.getGuildSettings(message.guild)
-        this.lang = guildSettings.lang
-
-        if(!guildSettings) return
-        
         var cmdArgs = this.formatArgs(message)
         
-        if(!await this.isAdministrator(message)) return
+        if(!await isUserAdministrator(message, this.sendEmbed)) return
 
         if(!this.areValid(cmdArgs, 1) || !this.client.languages.has(cmdArgs[0])) {this.sendEmbed(message, 'setlang_desc', 'setlang_help'); return}
 
