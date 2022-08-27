@@ -8,9 +8,9 @@ import isUserAdministrator from "../functions/isUserAdministrator.js";
 class SvStats extends Command{
     async run(guildSettings, message)
     {
-        var args = this.formatArgs(message)
+        if(!await isUserAdministrator(message, true)) return
 
-        if(!await isUserAdministrator(message, this.sendEmbed)) return
+        var args = this.formatArgs(message)
 
         if(args[0] === 'off') {await this.subCmdOff(message, guildSettings); return}
         if(args[0] === 'on') {await this.subCmdOn(message, guildSettings); return}

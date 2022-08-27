@@ -9,28 +9,28 @@ class Links extends Command{
         
         if(!await isUserAdministrator(message, this.sendEmbed)) return
         
-        if(!this.areValid(cmdArgs, 2)) {this.sendEmbed(message, 'links_desc', 'links_help')}
+        if(!this.areValid(cmdArgs, 2)) {this.sendEmbed(message, 'links_desc', 'links_help'); return}
         
         const subCmd = cmdArgs[0].toLowerCase()
 
-        if(subCmd == 'whitelist') {await this.subCmdWhitelist(guildSettings, message, cmdArgs); return}
-        if(subCmd == 'off') {await this.subCmdOff(guildSettings, message, cmdArgs); return}
-        if(subCmd == 'on') {await this.subCmdOn(guildSettings, message, cmdArgs); return}
+        if(subCmd.toLowerCase()  == 'default') {await this.subCmdWhitelist(guildSettings, message, cmdArgs); return}
+        if(subCmd.toLowerCase()  == 'off') {await this.subCmdOff(guildSettings, message, cmdArgs); return}
+        if(subCmd.toLowerCase()  ==  'on') {await this.subCmdOn(guildSettings, message, cmdArgs); return}
 
         this.sendEmbed(message, 'links_desc', 'links_help');
     }
 
     async subCmdOff(guildSettings, message, args)
     {
-       if(await this.handleLinksGlobalRule(message, guildSettings, false, args)) return
+       if(await this.handleLinksGlobalRule(message, guildSettings, true, args)) return
 
-       await this.handleLinksLocalRule(message, guildSettings, false, args)
+       await this.handleLinksLocalRule(message, guildSettings, true, args)
     }
     async subCmdOn(guildSettings, message, args)
     {
-        if(await this.handleLinksGlobalRule(message, guildSettings, true, args)) return
+        if(await this.handleLinksGlobalRule(message, guildSettings, false, args)) return
       
-        await this.handleLinksLocalRule(message, guildSettings, true, args)
+        await this.handleLinksLocalRule(message, guildSettings, false, args)
     }
     async subCmdWhitelist(guildSettings, message, args)
     {
@@ -39,11 +39,11 @@ class Links extends Command{
     
     async handleLinksGlobalRule(message, guildSettings, rule, args)
     {
-        if(args[1].toLowerCase() == 'everywhere')
+        if(args[1].toLowerCase() == 'default')
         {
             guildSettings.links_disabled_everywhere = rule
             await guildSettings.save()
-            this.sendEmbed(message, 'links_everywhere_success', 'success')
+            this.sendEmbed(message, 'links_default_success', 'success')
             return true
         }
         return false
@@ -53,11 +53,12 @@ class Links extends Command{
     {
         const channel = this.getChannelFromArg(args[1])
         if(channel == undefined) {this.sendEmbed(message, 'invalid_channel', 'error'); return}
+        if(guildSettings.channel_links == undefined) guildSettings.channel_links = new Map()
 
-        if(rule == false)
+        if(rule == true)
         {
-            if(guildSettings.disabled_links_channels.includes(channel.id)) {this.sendEmbed(message, 'links_off_channel_fail', 'error'); return}
-            guildSettings.disabled_links_channels.push(channel.id)
+            if(guildSettings.channel_links[channel.id] == "off") {this.sendEmbed(message, 'links_off_channel_fail', 'error'); return}
+            guildSettings.channel_links.set(channel.id, "off")
 
             await guildSettings.save()
 
@@ -66,8 +67,8 @@ class Links extends Command{
             return
         }
 
-        if(!guildSettings.disabled_links_channels.includes(channel.id)) {this.sendEmbed(message, 'links_on_channel_fail', 'error'); return}
-        guildSettings.disabled_links_channels.remove(channel)
+        if(!guildSettings.channel_links[channel.id] == "on") {this.sendEmbed(message, 'links_on_channel_fail', 'error'); return}
+        guildSettings.channel_links.set(channel.id, "on")
 
         await guildSettings.save()
         this.sendEmbed(message, 'links_on_channel_success', 'success')

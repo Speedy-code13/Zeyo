@@ -6,8 +6,7 @@ import isUserAdministrator from "../functions/isUserAdministrator.js";
 
 class Rr extends Command{
     async run(guildSettings, message){
-
-        if(!await isUserAdministrator(message, this.sendEmbed)) return
+        if(!await isUserAdministrator(message, true)) return
 
         await this.addReactionRole(message)
     }
@@ -24,12 +23,15 @@ class Rr extends Command{
 
         const roleMessage = await this.getMessageFromArg(args[2], channel)
     
-        if(roleMessage === undefined) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
+        if(roleMessage == undefined) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
 
         const role = this.getRoleFromArg(args[3], message)
 
         if(role == null) { this.sendEmbed(message, 'invalid_role', 'error'); return}
  
+        const highestRolePositionOfBot = message.guild.members.resolve(this.client.user).roles.highest.position
+        if(role.position >= highestRolePositionOfBot) {this.sendEmbed(message,'role_not_accessible', 'error'); return}
+
         const emoji = args[4]
 
         try {roleMessage.react(emoji)}
@@ -81,7 +83,7 @@ class Rr extends Command{
                 await reactionRoleMessageModel.save()
             }
     
-            this.sendEmbed(message, 'rr_success', 'success')
+            this.sendEmbed(message, 'rr_add_success', 'success')
         }
         catch(err)
         {

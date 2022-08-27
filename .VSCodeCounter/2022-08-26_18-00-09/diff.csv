@@ -1,0 +1,17 @@
+"filename", "language", "JavaScript", "comment", "blank", "total"
+"c:\Developer\Node\Zeyo\events\guildCreate.js", "JavaScript", -9, 0, -2, -11
+"c:\Developer\Node\Zeyo\events\guildDelete.js", "JavaScript", -9, 0, -2, -11
+"c:\Developer\Node\Zeyo\events\messageCreate.js", "JavaScript", -36, 0, -11, -47
+"c:\Developer\Node\Zeyo\events\messageReactionAdd.js", "JavaScript", -8, 0, -4, -12
+"c:\Developer\Node\Zeyo\events\messageReactionRemove.js", "JavaScript", -8, 0, -4, -12
+"c:\Developer\Node\Zeyo\events\ready.js", "JavaScript", -7, 0, -4, -11
+"c:\Developer\Node\Zeyo\functions\createStatsInterval.js", "JavaScript", 8, 0, 2, 10
+"c:\Developer\Node\Zeyo\functions\getMsFromConvention.js", "JavaScript", 11, 0, 2, 13
+"c:\Developer\Node\Zeyo\functions\getSvStats.js", "JavaScript", 14, 0, 5, 19
+"c:\Developer\Node\Zeyo\functions\hasLink.js", "JavaScript", 5, 0, 1, 6
+"c:\Developer\Node\Zeyo\functions\initEmbeds.js", "JavaScript", 95, 0, 9, 104
+"c:\Developer\Node\Zeyo\functions\isUserAdministrator.js", "JavaScript", 11, 0, 2, 13
+"c:\Developer\Node\Zeyo\functions\onReaction.js", "JavaScript", 18, 0, 5, 23
+"c:\Developer\Node\Zeyo\functions\sendEmbed.js", "JavaScript", 4, 0, 0, 4
+"c:\Developer\Node\Zeyo\functions\setSvStats.js", "JavaScript", 20, 0, 8, 28
+"Total", "-", 109, 0, 7, 116

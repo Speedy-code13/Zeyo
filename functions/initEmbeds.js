@@ -2,6 +2,22 @@ import {MessageEmbed} from 'discord.js'
 
 export default function initEmbeds(client)
 {
+    client.embeds.set('help', (string, lang) => {
+        const fields = []
+        client.commands.forEach((command, commandName) => {
+            if(commandName == 'help') return
+            fields.push({
+                name: `${client.prefix}${commandName}`,
+                value: client.getLocale(lang, commandName + '_desc')
+            })
+        });
+        let embed = new MessageEmbed()
+        .setColor('GREEN')
+        .setTitle('All Commands')
+        .addFields(fields)   
+        return embed
+    })
+
     client.embeds.set('error', (string, lang) => {
         let embed = new MessageEmbed()
         .setColor('RED')
@@ -58,9 +74,19 @@ export default function initEmbeds(client)
     client.embeds.set('links_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}links on/off [channel]\n${client.prefix}links on/off everywhere(rule for all channels)`,
-            example: `${client.prefix}links on/off #general\n${client.prefix}links off everywhere`,
+            usage: `${client.prefix}links on/off [channel]\n${client.prefix}links on/off default(rule for channels by default)`,
+            example: `${client.prefix}links on/off #general\n${client.prefix}links off default`,
             commandName : 'links'
+        }
+        return helpEmbed(client, args, lang)
+    })
+
+    client.embeds.set('autor_help', (description, lang) => {
+        const args = {
+            description:description,
+            usage: `${client.prefix}autor add/remove [role](time_to_remove_it)\n${client.prefix}autor removeAll`,
+            example: `${client.prefix}autor add/remove @cowboy\n${client.prefix}autor removeAll\n${client.prefix}autor add @newmember 12h/s/m`,
+            commandName : 'autor'
         }
         return helpEmbed(client, args, lang)
     })

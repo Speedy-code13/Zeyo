@@ -5,11 +5,17 @@ const guildSettingsSchema = new mongoose.Schema({
     lang : {type: String, required: true, default:"en"},
     stats_channel_id : String,
     links_disabled_everywhere : {type:Boolean, default: false},
-    disabled_links_channels: [
-        {
-            type: String
-        }
-    ]
+    channel_links: {
+        type: Map,
+        of: String,
+        default : new Map()
+    },
+    auto_roles: {
+        type: Map,
+        of: String,
+        required: true
+    }
+    
 })
 
 export default mongoose.model("Guild setting", guildSettingsSchema)

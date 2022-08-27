@@ -10,7 +10,7 @@ class MessageCreate extends Event{
         const guildSettings = await this.client.getGuildSettings(message.guild)
         this.lang = guildSettings.lang
 
-        await this.handleModeration(message, guildSettings)
+        this.handleModeration(message, guildSettings)
 
         this.handleCommands(message, guildSettings)
     }
@@ -18,12 +18,12 @@ class MessageCreate extends Event{
     async handleModeration(message, guildSettings)
     {
         if(!hasLink(message.content) || await isUserAdministrator(message)) return
+        if(guildSettings.channel_links == undefined) {guildSettings.channel_links = new Map(); guildSettings.save()}
 
-        if(guildSettings.disabled_links_channels.includes(message.channel.id) || guildSettings.links_disabled_everywhere)
+        if(guildSettings.channel_links.get(message.channel.id) == 'off' || (guildSettings.links_disabled_everywhere && !guildSettings.channel_links.has(message.channel.id)))
         {
             message.delete()
-            .then(msg => message.channel.send(this.client.getLocale(this.lang, 'links_not_allowed'), `ass`))
-            .catch(() => {this.sendEmbed(message, 'missing_permission', 'error')})
+            .catch(() => {this.sendEmbed(message, 'bot_missing_permission', 'error')})
             return
         }
     }
@@ -38,11 +38,9 @@ class MessageCreate extends Event{
 
         if(command)
         {
-            command._run(guildSettings, message);
             command.lang = guildSettings.lang
+            command._run(guildSettings, message);
         } 
-
-            
     }
 }
 

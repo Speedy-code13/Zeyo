@@ -1,5 +1,6 @@
 const lang = {
     greeting : "Hello",
+    ping_desc : "Check if the bot is online.",
     invalid_channel : "The specified channel is invalid.",
     invalid_message_id : "The specified message id is invalid. ",
     invalid_role : "The specified role is invalid.",
@@ -12,7 +13,7 @@ const lang = {
     invalid_language : "The specified language isn't supported.",
     setlang_success : "Successfully changed the server language.",
     missing_permission : "You don't have permission to execute this commmand.",
-    bot_missing_permission: "The bot doesn't have permission to execute this commmand.",
+    bot_missing_permission: "The bot requires administrator permissions in order to work.",
     setlang_desc: "Set the language for this server.",
     rr_desc: "(Un)bind a role to an emoji on a specific message.",
     rrd_desc: "Unbind all emojis from roles on a specific message.",
@@ -29,7 +30,16 @@ const lang = {
     links_on_channel_success: "Succesfully enabled links in the specified channel.",
     links_off_channel_fail : "The specified channnel already doesn't allow links.",
     links_on_channel_fail : "The specified channel already allows links.",
-    links_everywhere_success : "Successfully applied the links rule to every channel in the server."
+    links_default_success : "Successfully applied the links rule to channels who don't have specifics.",
+    autor_desc: "Set the roles that the user automatically gets when they join the server.",
+    autor_add_fail : "The specified role is already automatically given to new members.",
+    autor_remove_fail : "The specified role is already not automatically given to new members.",
+    autor_removeall_fail : "There are no roles that are automatically given to new members.",
+    autor_add_success : "Successfully started adding this role to new members.",
+    autor_remove_success : "Successfully stopped adding this role added to new members.",
+    autor_removeall_success : "Successfully stopped adding all roles previously set to new members.",
+    invalid_time  : "The amount of time specified is invalid, examples of valid ones are (100s, 1h, 10m).",
+    role_not_accessible : "The bot doesn't have permission or it's role is too low to give this role."
 };
   
 export default lang

@@ -5,7 +5,7 @@ export default async function isUserAdministrator(message, notifyUser)
 {
     const userMember = await message.guild.members.fetch(message.author)
     if(!userMember.permissions.has(Permissions.FLAGS.ADMINISTRATOR)){
-        if(sendEmbed == notifyUser) sendEmbed(message, 'missing_permission', 'error')
+        if(notifyUser) sendEmbed(message, 'missing_permission', 'error')
         return false
     }
 

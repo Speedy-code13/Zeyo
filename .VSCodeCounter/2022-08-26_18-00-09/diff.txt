@@ -1,0 +1,41 @@
+Date : 2022-08-26 18:00:09
+Directory : c:\Developer\Node\Zeyo\functions
+Total : 15 files,  109 codes, 0 comments, 7 blanks, all 116 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         15 |        109 |          0 |          7 |        116 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                       |         15 |        109 |          0 |          7 |        116 |
+| ..                                                      |          6 |        -77 |          0 |        -27 |       -104 |
+| ..\events                                               |          6 |        -77 |          0 |        -27 |       -104 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Developer\Node\Zeyo\events\guildCreate.js            | JavaScript |         -9 |          0 |         -2 |        -11 |
+| c:\Developer\Node\Zeyo\events\guildDelete.js            | JavaScript |         -9 |          0 |         -2 |        -11 |
+| c:\Developer\Node\Zeyo\events\messageCreate.js          | JavaScript |        -36 |          0 |        -11 |        -47 |
+| c:\Developer\Node\Zeyo\events\messageReactionAdd.js     | JavaScript |         -8 |          0 |         -4 |        -12 |
+| c:\Developer\Node\Zeyo\events\messageReactionRemove.js  | JavaScript |         -8 |          0 |         -4 |        -12 |
+| c:\Developer\Node\Zeyo\events\ready.js                  | JavaScript |         -7 |          0 |         -4 |        -11 |
+| c:\Developer\Node\Zeyo\functions\createStatsInterval.js | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Developer\Node\Zeyo\functions\getMsFromConvention.js | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Developer\Node\Zeyo\functions\getSvStats.js          | JavaScript |         14 |          0 |          5 |         19 |
+| c:\Developer\Node\Zeyo\functions\hasLink.js             | JavaScript |          5 |          0 |          1 |          6 |
+| c:\Developer\Node\Zeyo\functions\initEmbeds.js          | JavaScript |         95 |          0 |          9 |        104 |
+| c:\Developer\Node\Zeyo\functions\isUserAdministrator.js | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Developer\Node\Zeyo\functions\onReaction.js          | JavaScript |         18 |          0 |          5 |         23 |
+| c:\Developer\Node\Zeyo\functions\sendEmbed.js           | JavaScript |          4 |          0 |          0 |          4 |
+| c:\Developer\Node\Zeyo\functions\setSvStats.js          | JavaScript |         20 |          0 |          8 |         28 |
+| Total                                                   |            |        109 |          0 |          7 |        116 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+

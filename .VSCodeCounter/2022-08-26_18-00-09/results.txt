@@ -1,0 +1,33 @@
+Date : 2022-08-26 18:00:09
+Directory : c:\Developer\Node\Zeyo\functions
+Total : 9 files,  186 codes, 0 comments, 34 blanks, all 220 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |          9 |        186 |          0 |         34 |        220 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                       |          9 |        186 |          0 |         34 |        220 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Developer\Node\Zeyo\functions\createStatsInterval.js | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Developer\Node\Zeyo\functions\getMsFromConvention.js | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Developer\Node\Zeyo\functions\getSvStats.js          | JavaScript |         14 |          0 |          5 |         19 |
+| c:\Developer\Node\Zeyo\functions\hasLink.js             | JavaScript |          5 |          0 |          1 |          6 |
+| c:\Developer\Node\Zeyo\functions\initEmbeds.js          | JavaScript |         95 |          0 |          9 |        104 |
+| c:\Developer\Node\Zeyo\functions\isUserAdministrator.js | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Developer\Node\Zeyo\functions\onReaction.js          | JavaScript |         18 |          0 |          5 |         23 |
+| c:\Developer\Node\Zeyo\functions\sendEmbed.js           | JavaScript |          4 |          0 |          0 |          4 |
+| c:\Developer\Node\Zeyo\functions\setSvStats.js          | JavaScript |         20 |          0 |          8 |         28 |
+| Total                                                   |            |        186 |          0 |         34 |        220 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+

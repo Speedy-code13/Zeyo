@@ -11,6 +11,7 @@ class Command{
     }
     async _run(guildSettings, ...args)
     {
+        if(!args[0].guild.members.resolve(this.client.user).permissions.has("ADMINISTRATOR")) { sendEmbed(args[0], 'bot_missing_permission', 'error'); return}
         try{
             await this.run(guildSettings, ...args)
         }
@@ -53,6 +54,7 @@ class Command{
 
     getRoleFromArg(arg, message)
     {
+        if(arg.length != 23) return null
         var roleId = arg.substring(3, arg.length - 1)
         return  message.guild.roles.resolve(roleId)
     }
@@ -61,7 +63,7 @@ class Command{
         return this.client.getLocale(this.language,string, ...vars);
     }
     
-    sendEmbed(...args){ sendEmbed(args) } 
+    sendEmbed(...args){  sendEmbed( this.lang, this.client, ...args) } 
    
     async useGuildLang(message)
     {

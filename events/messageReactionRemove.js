@@ -4,7 +4,7 @@ import onReaction from "../functions/onReaction.js";
 class MessageReactionRemove extends Event{
 
     async run(reaction, user){
-        await onReaction(reaction, user, true)
+        await onReaction(this.client, reaction, user, false)
     }
 
 }

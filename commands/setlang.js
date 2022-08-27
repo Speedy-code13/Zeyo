@@ -7,9 +7,10 @@ import isUserAdministrator from "../functions/isUserAdministrator.js";
 class SetLang extends Command{
     async run(guildSettings, message)
     {
+        if(!await isUserAdministrator(message, true)) return
+        
         var cmdArgs = this.formatArgs(message)
         
-        if(!await isUserAdministrator(message, this.sendEmbed)) return
 
         if(!this.areValid(cmdArgs, 1) || !this.client.languages.has(cmdArgs[0])) {this.sendEmbed(message, 'setlang_desc', 'setlang_help'); return}
 

@@ -7,11 +7,11 @@ import isUserAdministrator from "../functions/isUserAdministrator.js";
 class Rrd extends Command{
     async run(guildSettings, message)
     {
-        if(!await isUserAdministrator(message, this.sendEmbed)) return
+        if(!await isUserAdministrator(message, true)) return
         
         let args = this.formatArgs(message)
 
-        if(!this.areValid(args, 1)) {  this.sendEmbed(message, 'rrd_success', 'rrd_help'); return}
+        if(!this.areValid(args, 1)) {  this.sendEmbed(message, 'rrd_desc', 'rrd_help'); return}
 
         const query = {message_id: args[0]}
 

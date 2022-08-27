@@ -5,6 +5,7 @@ import GuildSettingsModel from "../models/GuildSettingsModel.js";
 import {Client, Collection, MessageEmbed } from "discord.js"
 import initEmbeds from "../functions/initEmbeds.js";
 import createStatsInterval from "../functions/createStatsInterval.js";
+import mongoose  from "mongoose";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))                      
 
@@ -27,8 +28,8 @@ class Bot extends Client {
         this.embeds = new Map()
         this.defaultLang = "en"
 
-        this.initStatsIntervals()
         initEmbeds(this)
+        this.initStatsIntervals()
     }
 
     async start(token) 
@@ -86,19 +87,20 @@ class Bot extends Client {
 
     async getGuildSettings(guild)
     {
-        let guildSettings = await GuildSettingsModel.findOne({guild_id: guild.id}).catch(async (error) => { 
-            if(error)
-            {
-                guildSettings =  GuildSettingsModel.create({guild_id:guild.id}, error => {if(error) console.log(error)})
-                return null
-            }
-        })
-
-        return guildSettings
+        var guildSettings = await GuildSettingsModel.findOne({guild_id: guild.id})
+        if(guildSettings == undefined)
+        {
+            var userSchema = {guild_id:guild.id, auto_roles: new Map()}
+            GuildSettingsModel.create(userSchema, error => {
+                if(error) console.log(error)
+            })
+            return userSchema
+        }
+        else return guildSettings
     }
 
     async initStatsIntervals()
-    {
+    {   
         const guildsSettings = await GuildSettingsModel.find()
 
         guildsSettings.forEach(async (guildSettings) =>{
