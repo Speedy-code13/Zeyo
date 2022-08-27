@@ -4,7 +4,7 @@ const rrMessageSchema = new mongoose.Schema({
     guild_id : {type: String, required: true},
     channel_id : {type: String, required: true},
     message_id : {type: String, required: true},
-    unique_role : {type: Boolean, required: true, default: false },
+    role_limit : {type: Number, default: null},
     role_emoji : {
         type: Map,
         of: String

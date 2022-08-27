@@ -9,7 +9,7 @@ class Rrd extends Command{
     {
         if(!await isUserAdministrator(message, true)) return
         
-        let args = this.formatArgs(message)
+        const args = this.formatArgs(message)
 
         if(!this.areValid(args, 1)) {  this.sendEmbed(message, 'rrd_desc', 'rrd_help'); return}
 

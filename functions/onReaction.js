@@ -18,9 +18,9 @@ export default async function onReaction(client, reaction, user, added)
     
     if(added)
     {
-        addRoleToUser(user, client, role, reaction.message.guild)
+        addRoleToUser(reaction.message.guild.members.cache.get(user.id), client, role, reaction.message.guild)
         return
     }
 
-    removeRoleFromUser(user, client, role, reaction.message.guild)
+    removeRoleFromUser(reaction.message.guild.members.cache.get(user.id), client, role, reaction.message.guild)
 }

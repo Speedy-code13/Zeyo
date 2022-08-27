@@ -39,7 +39,10 @@ const lang = {
     autor_remove_success : "Successfully stopped adding this role added to new members.",
     autor_removeall_success : "Successfully stopped adding all roles previously set to new members.",
     invalid_time  : "The amount of time specified is invalid, examples of valid ones are (100s, 1h, 10m).",
-    role_not_accessible : "The bot doesn't have permission or it's role is too low to give this role."
+    role_not_accessible : "The bot doesn't have permission or it's role is too low to give this role.",
+    rrs_desc : "Change settings of specific messages used for giving roles using emojis.",
+    emojilimit_wrong_number : "You have to specify a valid number within the range [1-99]",
+    rrs_emojilimit_success : "Successfully set the limit of roles that you can get from the specified message."
 };
   
 export default lang

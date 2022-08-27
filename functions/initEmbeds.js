@@ -44,9 +44,18 @@ export default function initEmbeds(client)
     client.embeds.set('rr_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}rr add/remove [channel] [message id] [role] [emoji]`,
-            example: `${client.prefix}rr add/remove #general 992092550179594360 @cowboy 🤠`,
+            usage: `${client.prefix}rr add/remove [channel] [message id] [role] [emoji]\n${client.prefix}rr [channel] [message id] setEmojiLimit [1-99]`,
+            example: `${client.prefix}rr add/remove #general 992092550179594360 @cowboy 🤠${client.prefix}rr #general 992092550179594360 setEmojiLimit 1`,
             commandName : 'rr'
+        }
+        return helpEmbed(client, args, lang)
+    })
+    client.embeds.set('rrs_help', (description, lang) => {
+        const args = {
+            description:description,
+            usage: `${client.prefix}rrs emojilimit [message id] [1-99]`,
+            example: `🤠${client.prefix}rrs emojilimit 992092550179594360 1`,
+            commandName : 'rrs'
         }
         return helpEmbed(client, args, lang)
     })

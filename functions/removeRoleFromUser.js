@@ -2,7 +2,7 @@ export default function addRoleToUser(member, client, role, guild)
 {
     const highestRolePositionOfBot = guild.members.resolve(client.user).roles.highest.position
 
-    if(role == undefined || role.position >= highestRolePositionOfBot || !member.has(role)) return false
+    if(role == undefined || role.position >= highestRolePositionOfBot || !member.roles.cache.has(role)) return false
     try{
         member.roles.remove(role)
         return true

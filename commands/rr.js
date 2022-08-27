@@ -7,7 +7,7 @@ import isUserAdministrator from "../functions/isUserAdministrator.js";
 class Rr extends Command{
     async run(guildSettings, message){
         if(!await isUserAdministrator(message, true)) return
-
+        
         await this.addReactionRole(message)
     }
 
