@@ -1,5 +1,6 @@
 import Event from "../classes/Event.js";
 import addRoleToUser from "../functions/addRoleToUser.js";
+import removeRoleFromUser from "../functions/removeRoleFromUser.js";
 
 class GuildMemberAdd extends Event{
  
@@ -15,6 +16,7 @@ class GuildMemberAdd extends Event{
                 guildSettings.save()
                 return
             }
+            setTimeout(removeRoleFromUser, parseInt(timeToTakeOff), member, this.client, role, member.guild)
         });
     }
 }

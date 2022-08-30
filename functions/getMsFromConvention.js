@@ -6,8 +6,10 @@ export default function getMsFromConvention(string)
     const numberString = string.substr(0, string.length -1)
     if(!isNumber(numberString)) return null
 
-    if(string[string.length] == 's') return numberString.toInt() * 1000
-    if(string[string.length] == 'm') return numberString.toInt() * 1000 * 60
-    if(string[string.length] == 'h') return numberString.toInt() * 1000 * 60 * 60
+    const number = parseInt(numberString) 
+
+    if(string.charAt(string.length - 1).toLowerCase() == 's') return number * 1000
+    if(string.charAt(string.length - 1).toLowerCase() == 'm') return number * 1000 * 60
+    if(string.charAt(string.length - 1).toLowerCase() == 'h') return number * 1000 * 60 * 60
 }
 

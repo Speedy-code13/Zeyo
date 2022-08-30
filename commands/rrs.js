@@ -22,7 +22,7 @@ class Rrs extends Command{
 
         if(!rrMessage) {this.sendEmbed(message, 'invalid_message_id', 'error'); return}
 
-        if(!isNumber(args[2])) {  this.sendEmbed(message, 'emojilimit_wrong_number', 'error'); return} 
+        if(!isNumber(args[2]) || args[2] < 1 || args[2] > 99) {  this.sendEmbed(message, 'emojilimit_wrong_number', 'error'); return} 
         rrMessage.role_limit = args[2]
         await rrMessage.save()
         this.sendEmbed(message, 'rrs_emojilimit_success', 'success')

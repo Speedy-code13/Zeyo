@@ -19,11 +19,11 @@ class Rr extends Command{
 
         const channel = this.getChannelFromArg(args[1])
 
-        if(channel == undefined) {   this.sendEmbed(message, 'invalid_channel', 'error'); return}
+        if(channel == null) {   this.sendEmbed(message, 'invalid_channel', 'error'); return}
 
         const roleMessage = await this.getMessageFromArg(args[2], channel)
     
-        if(roleMessage == undefined) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
+        if(roleMessage == null) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
 
         const role = this.getRoleFromArg(args[3], message)
 
@@ -38,25 +38,31 @@ class Rr extends Command{
 
         catch {this.sendEmbed(message, 'invalid_emoji', 'error'); return}
 
-        if(args[0] === 'add')
-            await this.saveReactionRole(message.guild.id, message.channel.id, roleMessage.id, emoji, role.id, message)
+     
+        if(args[0].toLowerCase() == 'add')
+            await this.saveReactionRole(message.guild.id, channel.id, roleMessage.id, emoji, role.id, message)
 
-        if(args[0] === 'remove')
-           await this.removeReactionRole(emoji, role.id, message)
+        if(args[0].toLowerCase()  == 'remove')
+           await this.removeReactionRole(emoji, roleMessage, message)
 
     }
-    async removeReactionRole(messageId, emojiId, message)
+    async removeReactionRole(emoji, roleMessage, message)
     {
-        const query = { message_id: messageId }
-        let rrMessageModel = await RrMessageModel.findOne(query)
+        const query = { message_id: roleMessage.id }
+        const rrMessageModel = await RrMessageModel.findOne(query)
 
-        if(!rrMessageModel || !rrMessageModel.has(role_emoji))
+        if(!rrMessageModel || !rrMessageModel.role_emoji.has(emoji))
         {
-            this.sendEmbed(message, 'rr_remove_fail', 'success' )
+            this.sendEmbed(message, 'rr_remove_fail', 'error')
             return
         }
-
-        rrMessageModel.role_emoji.delete(emojiId)
+        roleMessage.reactions.cache.forEach((reaction, reactionId) =>
+        {
+            if(reaction.emoji.name == emoji){
+                reaction.remove()
+            }
+        })
+        rrMessageModel.role_emoji.delete(emoji)
         await rrMessageModel.save()
         this.sendEmbed(message, 'rr_remove_success', 'success' )
     }

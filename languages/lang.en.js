@@ -42,7 +42,11 @@ const lang = {
     role_not_accessible : "The bot doesn't have permission or it's role is too low to give this role.",
     rrs_desc : "Change settings of specific messages used for giving roles using emojis.",
     emojilimit_wrong_number : "You have to specify a valid number within the range [1-99]",
-    rrs_emojilimit_success : "Successfully set the limit of roles that you can get from the specified message."
+    rrs_emojilimit_success : "Successfully set the limit of roles that you can get from the specified message.",
+    welcomemsg_desc : "Enable/Disable welcome messages on a specific channel.",
+    welcomemsg_off_fail : "Welcome messages are already disabled.",
+    welcomemsg_off_success : "Successfully disabled welcome messages.",
+    welcomemsg_on_success : "Successfully enable welcome messages on the specified channel"
 };
   
 export default lang

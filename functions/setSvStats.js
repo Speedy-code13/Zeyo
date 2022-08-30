@@ -5,7 +5,7 @@ export default async function setSvStats(client, guild_settings)
     const guild = client.guilds.cache.get(guild_settings.guild_id)
     const channel = client.channels.cache.get(guild_settings.stats_channel_id)
 
-    if(guild == undefined || channel == undefined) 
+    if(guild == null || channel == null) 
     {
         disableSvStats(client, guild_settings)
         return false
@@ -17,7 +17,7 @@ export default async function setSvStats(client, guild_settings)
 
 async function disableSvStats(client, guild_settings)
 {
-    guild_settings.stats_channel_id = undefined
+    guild_settings.stats_channel_id = null
 
     const thisIntervalId = client.statsIntervals.get(guild_settings)
     clearInterval(thisIntervalId)

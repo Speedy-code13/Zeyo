@@ -18,11 +18,11 @@ class Rrd extends Command{
         const rrMessage = await RrMessageModel.findOneAndDelete(query)
         if(!rrMessage) {this.sendEmbed(message, 'invalid_message_id', 'error'); return}
 
-        const channel = this.client.channels.cache.get(rrMessage.channel_id)
+        const channel = await this.client.channels.fetch(rrMessage.channel_id)
 
         const roleMessage = await this.getMessageFromArg(args[0], channel)
 
-        if(roleMessage === undefined) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
+        if(roleMessage == undefined) { this.sendEmbed(message, 'invalid_message_id', 'error'); return}
 
         roleMessage.reactions.removeAll()
 

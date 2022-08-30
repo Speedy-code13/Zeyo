@@ -10,7 +10,7 @@ class SvStats extends Command{
     {
         if(!await isUserAdministrator(message, true)) return
 
-        var args = this.formatArgs(message)
+        const args = this.formatArgs(message)
 
         if(args[0] === 'off') {await this.subCmdOff(message, guildSettings); return}
         if(args[0] === 'on') {await this.subCmdOn(message, guildSettings); return}

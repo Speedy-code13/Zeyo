@@ -5,6 +5,7 @@ const guildSettingsSchema = new mongoose.Schema({
     lang : {type: String, required: true, default:"en"},
     stats_channel_id : String,
     links_disabled_everywhere : {type:Boolean, default: false},
+    welcome_channel_id : {type:String, default:null},
     channel_links: {
         type: Map,
         of: String,

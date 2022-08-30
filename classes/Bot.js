@@ -52,7 +52,7 @@ class Bot extends Client {
     {
         let locale = this.languages.get(language)[string];
 
-        if(locale == undefined) return "string missing in current language(development bug)"
+        if(locale == null) return "string missing in current language(development bug)"
 
         let count = 0;
         locale = locale.replace(/%VAR%/g, () => vars[count] !== null ? vars[count] : "%VAR%");
@@ -88,7 +88,7 @@ class Bot extends Client {
     async getGuildSettings(guild)
     {
         var guildSettings = await GuildSettingsModel.findOne({guild_id: guild.id})
-        if(guildSettings == undefined)
+        if(guildSettings == null)
         {
             var userSchema = {guild_id:guild.id, auto_roles: new Map()}
             GuildSettingsModel.create(userSchema, error => {
@@ -104,7 +104,7 @@ class Bot extends Client {
         const guildsSettings = await GuildSettingsModel.find()
 
         guildsSettings.forEach(async (guildSettings) =>{
-            if(guildSettings.stats_channel_id == undefined) return
+            if(guildSettings.stats_channel_id == null) return
 
             const interval = createStatsInterval(this, guildSettings)
 

@@ -23,7 +23,7 @@ class Command{
     {
         if(args.length == 0) return false
         for(let i = 0; i < number; i++){
-            if(args[i] == undefined && args[i] == null) return false
+            if(args[i] == null) return false
         }
         return true
     }
@@ -44,9 +44,10 @@ class Command{
     async getMessageFromArg(arg, channel)
     {
         try{
-            var message = await channel.messages.fetch(arg)
+            const message = await channel.messages.fetch(arg)
         }
-        catch{
+        catch(e){
+            console.log(e)
             return undefined
         }
         return message
@@ -55,8 +56,8 @@ class Command{
     getRoleFromArg(arg, message)
     {
         if(arg.length != 23) return null
-        var roleId = arg.substring(3, arg.length - 1)
-        return  message.guild.roles.resolve(roleId)
+        const roleId = arg.substring(3, arg.length - 1)
+        return message.guild.roles.resolve(roleId)
     }
     getLocale(string, ...vars)
     {
@@ -67,7 +68,7 @@ class Command{
    
     async useGuildLang(message)
     {
-        var guildSettings = await this.client.getGuildSettings(message)
+        const guildSettings = await this.client.getGuildSettings(message)
         this.lang = guildSettings.lang
     }
 

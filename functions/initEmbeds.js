@@ -45,7 +45,7 @@ export default function initEmbeds(client)
         const args = {
             description:description,
             usage: `${client.prefix}rr add/remove [channel] [message id] [role] [emoji]\n${client.prefix}rr [channel] [message id] setEmojiLimit [1-99]`,
-            example: `${client.prefix}rr add/remove #general 992092550179594360 @cowboy 🤠${client.prefix}rr #general 992092550179594360 setEmojiLimit 1`,
+            example: `${client.prefix}rr add/remove #general 992092550179594360 @cowboy 🤠`,
             commandName : 'rr'
         }
         return helpEmbed(client, args, lang)
@@ -54,7 +54,7 @@ export default function initEmbeds(client)
         const args = {
             description:description,
             usage: `${client.prefix}rrs emojilimit [message id] [1-99]`,
-            example: `🤠${client.prefix}rrs emojilimit 992092550179594360 1`,
+            example: `${client.prefix}rrs emojilimit 992092550179594360 1`,
             commandName : 'rrs'
         }
         return helpEmbed(client, args, lang)
@@ -94,8 +94,18 @@ export default function initEmbeds(client)
         const args = {
             description:description,
             usage: `${client.prefix}autor add/remove [role](time_to_remove_it)\n${client.prefix}autor removeAll`,
-            example: `${client.prefix}autor add/remove @cowboy\n${client.prefix}autor removeAll\n${client.prefix}autor add @newmember 12h/s/m`,
+            example: `${client.prefix}autor add/remove @cowboy\n${client.prefix}autor add @newmember 12h/s/m\n${client.prefix}autor removeAll`,
             commandName : 'autor'
+        }
+        return helpEmbed(client, args, lang)
+    })
+
+    client.embeds.set('welcomemsg_help', (description, lang) => {
+        const args = {
+            description:description,
+            usage: `${client.prefix}welcomemsg on [channel]\n${client.prefix}welcomemsg off`,
+            example: `${client.prefix}welcomemsg on #welcome\n${client.prefix}welcomemsg off`,
+            commandName : 'welcomemsg'
         }
         return helpEmbed(client, args, lang)
     })
