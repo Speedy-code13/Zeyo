@@ -1,4 +1,4 @@
-import {MessageEmbed} from 'discord.js'
+import {ClientPresence, ClientUser, MessageEmbed} from 'discord.js'
 
 export default function initEmbeds(client)
 {
@@ -118,6 +118,38 @@ export default function initEmbeds(client)
             commandName : 'bodds'
         }
         return helpEmbed(client, args, lang)
+    })
+
+    client.embeds.set('universal_betting_website', (matchTime, matchName, matchCondition, initialOdds, boostedOdds, websiteLink, websiteColor) =>{
+        const embed = new MessageEmbed()
+                .setTitle(`${matchName}\n‎`)
+                .setDescription(`${matchCondition}\n‎`)
+                .addFields([
+                    {
+                        name: `~~${initialOdds}~~ ⇒ ${boostedOdds}`,
+                        value: `‎`
+                    }
+                ])
+                .setFooter({text:matchTime})
+                .setURL(websiteLink)
+                .setColor(websiteColor)
+        return embed
+    })
+
+    client.embeds.set('winamax', (matchTime, matchName, matchCondition, initialOdds, boostedOdds) =>{
+        return client.embeds.get('universal_betting_website')
+        (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.winamax.fr/paris-sportifs/sports/100000", "#e50914")
+    })
+
+    client.embeds.set('winamax_gold', (matchTime, matchName, matchCondition, initialOdds, boostedOdds) =>{
+        return client.embeds.get('universal_betting_website')
+        (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.winamax.fr/paris-sportifs/sports/100000", "   ")
+    })
+
+
+    client.embeds.set('unibet', (matchTime, matchName, matchCondition, initialOdds, boostedOdds) =>{
+        return client.embeds.get('universal_betting_website')
+        (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.unibet.fr/sport/super-cotes-boostees", "#147b45")
     })
 }
 

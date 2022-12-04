@@ -2,6 +2,7 @@ import { Guild } from "discord.js";
 import Command from "../classes/Command.js";
 import isUserAdministrator from "../functions/isUserAdministrator.js";
 import BoostedOddsModel from "../models/BoostedOddsModel.js";
+import createOrGetThread from "../functions/createOrGetThread.js";
 
 class Bodds extends Command{
 
@@ -48,22 +49,21 @@ class Bodds extends Command{
         if(role == null) {this.sendEmbed(message, 'invalid_role', 'error'); return}
 
         const website = args[2]
-        if(website == null || !this.client.webdriver.has(website.toLowerCase())) {this.sendEmbed(message, 'invalid_website', 'error'); return}
+        if(website == null || !this.client.webdriver.supportedWebsites.includes(website.toLowerCase())) {this.sendEmbed(message, 'invalid_website', 'error'); return}
         boddsSettings.role_for_website.set(website.toLowerCase(), role.id)
 
-        await boddsSettings.save()
+        boddsSettings.save()
+        const thread = await createOrGetThread(getParsedWebsiteName(website), channel);
         this.sendEmbed(message, 'bodds_notifyrole_success', 'success')
     }
     async getBoddsSettings(guild)
     {
-        const boddsSettings = await BoostedOddsModel.findOne({guild_id: guild.id})
+        var boddsSettings = await BoostedOddsModel.findOne({guild_id: guild.id})
         if(boddsSettings == null)
         {
             const userSchema = {guild_id:guild.id, role_for_website: new Map()}
-            BoostedOddsModel.create(userSchema, error => {
-                if(error) console.log(error)
-            })
-            return userSchema
+            boddsSettings = new BoostedOddsModel(userSchema)
+            await boddsSettings.save()
         }
         return boddsSettings
     }

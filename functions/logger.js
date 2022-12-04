@@ -14,9 +14,9 @@ import winston from 'winston/lib/winston.js';
   }
   const errorLogger = new winston.createLogger(logConfiguration)
   
- function log(err)
+ function log(error)
  {
-    errorLogger.error(`Error: : ${err.message}`)
+    errorLogger.error(`${error}`)
  }
   
   export default log

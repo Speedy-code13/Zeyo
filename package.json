@@ -12,13 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "chrome": "^0.1.0",
-    "chromedriver": "^107.0.3",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
     "driver": "^1.0.0",
     "geckodriver": "^3.2.0",
     "mongoose": "^6.4.1",
-    "selenium-webdriver": "^4.6.0",
+    "node-html-parser": "^6.1.4",
+    "selenium-webdriver": "^4.6.1",
     "winston": "^3.8.1"
+  },
+  "devDependencies": {
+    "chromedriver": "^107.0.3"
   }
 }

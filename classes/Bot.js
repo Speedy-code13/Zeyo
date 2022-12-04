@@ -8,13 +8,10 @@ import createStatsInterval from "../functions/createStatsInterval.js";
 import WebDriver from "./Webdriver.js";
 import mongoose  from "mongoose";
 import createOddsNotificationsInterval from "../functions/createOddsNotificationsInterval.js";
+import getFiles from "../functions/getFiles.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))                      
 
-function getfiles(directory)
-{
-    return fs.readdirSync(directory).filter((file) => file.endsWith(".js"))
-}
 
 
 class Bot extends Client {
@@ -44,7 +41,7 @@ class Bot extends Client {
 
     loadEvents()
     {
-        getfiles(`${this, __dirname}/../events/`).forEach(async (eventFileName) =>
+        getFiles(`${this, __dirname}/../events/`).forEach(async (eventFileName) =>
         {
             const eventName = eventFileName.split(".js")[0]
             const Event = (await import(`../events/${eventFileName}`)).default
@@ -67,7 +64,7 @@ class Bot extends Client {
 
     loadCommands()
     {
-        getfiles(`${this, __dirname}/../commands/`).forEach(async (commandFileName) =>
+        getFiles(`${this, __dirname}/../commands/`).forEach(async (commandFileName) =>
         {
             const commandName = commandFileName.split(".js")[0]
             const Command = (await import(`../commands/${commandFileName}`)).default
@@ -77,7 +74,7 @@ class Bot extends Client {
     }
     loadLanguages()
     {
-        getfiles(`${this, __dirname}/../languages/`).forEach(async (languageFileName) =>
+        getFiles(`${this, __dirname}/../languages/`).forEach(async (languageFileName) =>
         {
             const languageName = languageFileName.substring(5, languageFileName.length - 3)
             const language = (await import(`../languages/${languageFileName}`)).default
@@ -96,12 +93,10 @@ class Bot extends Client {
         if(guildSettings == null)
         {
             var userSchema = {guild_id:guild.id, auto_roles: new Map()}
-            GuildSettingsModel.create(userSchema, error => {
-                if(error) console.log(error)
-            })
-            return userSchema
+            guildSettings = new GuildSettingsModel(userSchema)
+            await guildSettings.save()
         }
-        else return guildSettings
+        return guildSettings
     }
 
     async initStatsIntervals()
