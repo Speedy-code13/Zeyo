@@ -1,0 +1,75 @@
+Date : 2022-09-01 09:41:04
+Directory : c:\Developer\Node\Zeyo
+Total : 42 files,  2485 codes, 0 comments, 281 blanks, all 2766 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          2 |      1,391 |          0 |          2 |      1,393 |
+| JavaScript |         38 |      1,092 |          0 |        275 |      1,367 |
+| Markdown   |          2 |          2 |          0 |          4 |          6 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                       |         42 |      2,485 |          0 |        281 |      2,766 |
+| Zeyo                                                    |          1 |          1 |          0 |          2 |          3 |
+| classes                                                 |          4 |        217 |          0 |         41 |        258 |
+| commands                                                |         10 |        366 |          0 |        142 |        508 |
+| events                                                  |          7 |        136 |          0 |         36 |        172 |
+| functions                                               |         13 |        283 |          0 |         48 |        331 |
+| languages                                               |          2 |         65 |          0 |          2 |         67 |
+| models                                                  |          1 |          4 |          0 |          0 |          4 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Developer\Node\Zeyo\README.md                        | Markdown   |          1 |          0 |          2 |          3 |
+| c:\Developer\Node\Zeyo\Zeyo\README.md                   | Markdown   |          1 |          0 |          2 |          3 |
+| c:\Developer\Node\Zeyo\classes\Bot.js                   | JavaScript |         97 |          0 |         20 |        117 |
+| c:\Developer\Node\Zeyo\classes\Command.js               | JavaScript |         69 |          0 |         10 |         79 |
+| c:\Developer\Node\Zeyo\classes\Database.js              | JavaScript |         18 |          0 |          4 |         22 |
+| c:\Developer\Node\Zeyo\classes\Event.js                 | JavaScript |         33 |          0 |          7 |         40 |
+| c:\Developer\Node\Zeyo\commands\autor.js                | JavaScript |         45 |          0 |         19 |         64 |
+| c:\Developer\Node\Zeyo\commands\help.js                 | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Developer\Node\Zeyo\commands\links.js                | JavaScript |         59 |          0 |         21 |         80 |
+| c:\Developer\Node\Zeyo\commands\ping.js                 | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Developer\Node\Zeyo\commands\rr.js                   | JavaScript |         76 |          0 |         26 |        102 |
+| c:\Developer\Node\Zeyo\commands\rrd.js                  | JavaScript |         21 |          0 |         12 |         33 |
+| c:\Developer\Node\Zeyo\commands\rrs.js                  | JavaScript |         22 |          0 |         10 |         32 |
+| c:\Developer\Node\Zeyo\commands\setlang.js              | JavaScript |         15 |          0 |         10 |         25 |
+| c:\Developer\Node\Zeyo\commands\svstats.js              | JavaScript |         83 |          0 |         27 |        110 |
+| c:\Developer\Node\Zeyo\commands\welcomemsg.js           | JavaScript |         29 |          0 |         13 |         42 |
+| c:\Developer\Node\Zeyo\events\guildCreate.js            | JavaScript |          9 |          0 |          2 |         11 |
+| c:\Developer\Node\Zeyo\events\guildDelete.js            | JavaScript |          9 |          0 |          2 |         11 |
+| c:\Developer\Node\Zeyo\events\guildMemberAdd.js         | JavaScript |         59 |          0 |          9 |         68 |
+| c:\Developer\Node\Zeyo\events\messageCreate.js          | JavaScript |         36 |          0 |         11 |         47 |
+| c:\Developer\Node\Zeyo\events\messageReactionAdd.js     | JavaScript |          8 |          0 |          4 |         12 |
+| c:\Developer\Node\Zeyo\events\messageReactionRemove.js  | JavaScript |          8 |          0 |          4 |         12 |
+| c:\Developer\Node\Zeyo\events\ready.js                  | JavaScript |          7 |          0 |          4 |         11 |
+| c:\Developer\Node\Zeyo\functions\addRoleToUser.js       | JavaScript |         13 |          0 |          1 |         14 |
+| c:\Developer\Node\Zeyo\functions\createStatsInterval.js | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Developer\Node\Zeyo\functions\getMsFromConvention.js | JavaScript |         11 |          0 |          5 |         16 |
+| c:\Developer\Node\Zeyo\functions\getSvStats.js          | JavaScript |         14 |          0 |          5 |         19 |
+| c:\Developer\Node\Zeyo\functions\hasLink.js             | JavaScript |          5 |          0 |          1 |          6 |
+| c:\Developer\Node\Zeyo\functions\initEmbeds.js          | JavaScript |        122 |          0 |         11 |        133 |
+| c:\Developer\Node\Zeyo\functions\isNumber.js            | JavaScript |          3 |          0 |          0 |          3 |
+| c:\Developer\Node\Zeyo\functions\isUserAdministrator.js | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Developer\Node\Zeyo\functions\logger.js              | JavaScript |         19 |          0 |          3 |         22 |
+| c:\Developer\Node\Zeyo\functions\onReaction.js          | JavaScript |         40 |          0 |          9 |         49 |
+| c:\Developer\Node\Zeyo\functions\removeRoleFromUser.js  | JavaScript |         13 |          0 |          1 |         14 |
+| c:\Developer\Node\Zeyo\functions\sendEmbed.js           | JavaScript |          4 |          0 |          0 |          4 |
+| c:\Developer\Node\Zeyo\functions\setSvStats.js          | JavaScript |         20 |          0 |          8 |         28 |
+| c:\Developer\Node\Zeyo\index.js                         | JavaScript |         21 |          0 |          6 |         27 |
+| c:\Developer\Node\Zeyo\languages\lang.en.js             | JavaScript |         51 |          0 |          1 |         52 |
+| c:\Developer\Node\Zeyo\languages\lang.fr.js             | JavaScript |         14 |          0 |          1 |         15 |
+| c:\Developer\Node\Zeyo\models\GuildSettingsModel.js     | JavaScript |          4 |          0 |          0 |          4 |
+| c:\Developer\Node\Zeyo\package-lock.json                | JSON       |      1,372 |          0 |          1 |      1,373 |
+| c:\Developer\Node\Zeyo\package.json                     | JSON       |         19 |          0 |          1 |         20 |
+| Total                                                   |            |      2,485 |          0 |        281 |      2,766 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+

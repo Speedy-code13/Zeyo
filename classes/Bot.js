@@ -5,7 +5,9 @@ import GuildSettingsModel from "../models/GuildSettingsModel.js";
 import {Client, Collection, MessageEmbed } from "discord.js"
 import initEmbeds from "../functions/initEmbeds.js";
 import createStatsInterval from "../functions/createStatsInterval.js";
+import WebDriver from "./Webdriver.js";
 import mongoose  from "mongoose";
+import createOddsNotificationsInterval from "../functions/createOddsNotificationsInterval.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))                      
 
@@ -27,6 +29,9 @@ class Bot extends Client {
         this.languages = new Map()
         this.embeds = new Map()
         this.defaultLang = "en"
+        this.webdriver = new WebDriver()
+
+        createOddsNotificationsInterval(this)
 
         initEmbeds(this)
         this.initStatsIntervals()

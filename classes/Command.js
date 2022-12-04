@@ -1,6 +1,7 @@
 import { MessageEmbed, Permissions } from "discord.js"
 import GuildSettingsModel from "../models/GuildSettingsModel.js";
 import sendEmbed from "../functions/sendEmbed.js";
+import log from "../functions/logger.js";
 
 class Command{
     constructor(client, name)
@@ -17,6 +18,7 @@ class Command{
         }
         catch(err){
             console.log(err)
+            log(err)
         }
     }
     areValid(args, number)
@@ -38,24 +40,26 @@ class Command{
 
    getChannelFromArg(arg)
     {
+        if(arg == null) return null
         return this.client.channels.cache.get(arg.substring(2, arg.length -1))
     }
 
     async getMessageFromArg(arg, channel)
     {
         try{
-            const message = await channel.messages.fetch(arg)
+            var roleMessage = await channel.messages.fetch(arg)
         }
         catch(e){
             console.log(e)
             return undefined
         }
-        return message
+        return roleMessage
     }
 
     getRoleFromArg(arg, message)
     {
-        if(arg.length != 23) return null
+        if(arg == null || message == null) return null
+        if(arg.length < 4) return null
         const roleId = arg.substring(3, arg.length - 1)
         return message.guild.roles.resolve(roleId)
     }

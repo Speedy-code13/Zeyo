@@ -74,18 +74,25 @@ class SvStats extends Command{
         try{
             const channelManager = message.guild.channels
 
+            const everyoneRole = message.guild.roles.cache.find(r => r.name === '@everyone');
+
             const svStatsCategory = await channelManager.create('─═☆ S E R V E R - S T A T S ☆═─', 
             {
                 type:'GUILD_CATEGORY',
-                position: 0
+                position: 0,
+                permissionsOverwrites: [{
+                    id: everyoneRole.id,
+                    deny: ['CONNECT']
+                  }]
             })
             const channelName = await getSvStats(message.guild)
     
             const channel = await channelManager.create(channelName, {
+
                 type: 'GUILD_VOICE',
                 parent: svStatsCategory, 
                 permissionsOverwrites: [{
-                    id: message.guild.id,
+                    id: everyoneRole.id,
                     deny: ['CONNECT']
                   }]
             })

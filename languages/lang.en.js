@@ -46,7 +46,14 @@ const lang = {
     welcomemsg_desc : "Enable/Disable welcome messages on a specific channel.",
     welcomemsg_off_fail : "Welcome messages are already disabled.",
     welcomemsg_off_success : "Successfully disabled welcome messages.",
-    welcomemsg_on_success : "Successfully enable welcome messages on the specified channel"
+    welcomemsg_on_success : "Successfully enable welcome messages on the specified channel",
+    bodds_desc: "Boosted odds notifier settings.",
+    bodds_on_success: "Successfully enabled the boosted odds notifier.",
+    bodds_off_success: "Successfully disabled the boosted odds notifier.",
+    bodds_on_fail: "The boosted odds notifier is already enabled.",
+    bodds_off_fail: "The boosted odds notifier is already disabled.",
+    bodds_notifyrole_success: "Successfully set the boosted odds notifier channel.",
+    invalid_website: "The specified website is not in the supported websites list(winamax, winamaxgold, betlic, zebet, unibet, parionssport).",
 };
   
 export default lang

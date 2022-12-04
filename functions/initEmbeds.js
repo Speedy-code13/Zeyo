@@ -44,7 +44,7 @@ export default function initEmbeds(client)
     client.embeds.set('rr_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}rr add/remove [channel] [message id] [role] [emoji]\n${client.prefix}rr [channel] [message id] setEmojiLimit [1-99]`,
+            usage: `${client.prefix}rr add/remove [channel] [message id] [role] [emoji]`,
             example: `${client.prefix}rr add/remove #general 992092550179594360 @cowboy 🤠`,
             commandName : 'rr'
         }
@@ -106,6 +106,16 @@ export default function initEmbeds(client)
             usage: `${client.prefix}welcomemsg on [channel]\n${client.prefix}welcomemsg off`,
             example: `${client.prefix}welcomemsg on #welcome\n${client.prefix}welcomemsg off`,
             commandName : 'welcomemsg'
+        }
+        return helpEmbed(client, args, lang)
+    })
+
+    client.embeds.set('bodds_help', (description, lang) => {
+        const args = {
+            description:description,
+            usage: `${client.prefix}bodds on [channel]\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole [role] [betting website(winamax, betlic, zebet, unibet)]`,
+            example: `${client.prefix}bodds on #boosted-odds\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole @winamax winamax`,
+            commandName : 'bodds'
         }
         return helpEmbed(client, args, lang)
     })

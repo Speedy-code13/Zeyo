@@ -1,3 +1,4 @@
+import log from "../functions/logger.js"
 class Event{
     constructor(client, name)
     {
@@ -15,6 +16,7 @@ class Event{
         }
         catch(err){
             console.log(err)
+            log(err)
         }
     }
 

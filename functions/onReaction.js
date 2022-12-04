@@ -13,9 +13,10 @@ export default async function onReaction(client, reaction, user, added)
     const query = {message_id: reaction.message.id}
     const rrMessage = await RrMessageModel.findOne(query)
      
-    const emojiId = reaction.emoji.name
-    if(!rrMessage || !rrMessage.role_emoji.has(emojiId)) return
-    const roleId = rrMessage.role_emoji.get(emojiId)
+    const emoji = reaction.emoji.id ? `<:${reaction.emoji.name}:${reaction.emoji.id}>` : reaction.emoji.name
+
+    if(!rrMessage || !rrMessage.role_emoji.has(emoji)) return
+    const roleId = rrMessage.role_emoji.get(emoji)
     const role = reaction.message.guild.roles.resolve(roleId)
     
     if(added)

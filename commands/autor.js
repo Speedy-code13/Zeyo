@@ -11,7 +11,7 @@ class Autor extends Command{
 
         const args = this.formatArgs(message)
 
-        if(args[0]?.toLowerCase()  == 'removeall'){ this.subCmdRemoveAll(args, guildSettings, message); return }
+        if(args[0]?.toLowerCase() == 'removeall'){ this.subCmdRemoveAll(args, guildSettings, message); return }
 
         if(!this.areValid(args, 2)) {  this.sendEmbed(message, 'autor_desc', 'autor_help'); return }
 
