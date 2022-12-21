@@ -143,13 +143,30 @@ export default function initEmbeds(client)
 
     client.embeds.set('winamax_gold', (matchTime, matchName, matchCondition, initialOdds, boostedOdds) =>{
         return client.embeds.get('universal_betting_website')
-        (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.winamax.fr/paris-sportifs/sports/100000", "   ")
+        (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.winamax.fr/paris-sportifs/sports/100000", "#f2cc00")
     })
 
 
     client.embeds.set('unibet', (matchTime, matchName, matchCondition, initialOdds, boostedOdds) =>{
         return client.embeds.get('universal_betting_website')
         (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.unibet.fr/sport/super-cotes-boostees", "#147b45")
+    })
+
+    client.embeds.set('parionssport', (matchTime, matchName, matchDescription, boostedOdds) =>{
+        const embed = new MessageEmbed()
+                .setTitle(`${matchName}\n‎`)
+                .setDescription(`${matchDescription}\n‎`)
+                .addFields([
+                    {
+                        name: boostedOdds,
+                        value: `‎`
+                    }
+                ])
+                .setFooter({text:matchTime})
+                .setURL("https://www.enligne.parionssport.fdj.fr/cotes-boostees")
+                .setColor("#004bc7")
+        
+        return embed
     })
 }
 

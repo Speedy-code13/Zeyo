@@ -3,7 +3,7 @@ import Command from "../classes/Command.js";
 import isUserAdministrator from "../functions/isUserAdministrator.js";
 import BoostedOddsModel from "../models/BoostedOddsModel.js";
 import createOrGetThread from "../functions/createOrGetThread.js";
-
+import getParsedWebsiteName from "../functions/getParsedWebsiteName.js"
 class Bodds extends Command{
 
     async run(guildSettings, message)
@@ -49,11 +49,11 @@ class Bodds extends Command{
         if(role == null) {this.sendEmbed(message, 'invalid_role', 'error'); return}
 
         const website = args[2]
-        if(website == null || !this.client.webdriver.supportedWebsites.includes(website.toLowerCase())) {this.sendEmbed(message, 'invalid_website', 'error'); return}
+        if(website == null || !this.client.webdriver.websites.has(website.toLowerCase())) {this.sendEmbed(message, 'invalid_website', 'error'); return}
         boddsSettings.role_for_website.set(website.toLowerCase(), role.id)
 
         boddsSettings.save()
-        const thread = await createOrGetThread(getParsedWebsiteName(website), channel);
+        const thread = await createOrGetThread(getParsedWebsiteName(website), message.channel);
         this.sendEmbed(message, 'bodds_notifyrole_success', 'success')
     }
     async getBoddsSettings(guild)

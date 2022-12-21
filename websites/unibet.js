@@ -13,13 +13,7 @@ export default async function unibet(driver, client, webdriver)
 
     for(const match of boostedOddsMatches)
     {
-        try{
-            await updateMatchesData(matchesData, match, client)
-        }
-        catch(err){
-            console.log(err)
-            continue
-        }
+        await updateMatchesData(matchesData, match, client)
     }
     const matches = webdriver.matchesThatCanBeSent('unibet', matchesData)
     return Array.from(matches?.values())
@@ -33,13 +27,20 @@ async function updateMatchesData(matchesData, match, client)
         return time
     }
 
-    const[matchTime, matchCondition, league, teams, initialOdds, boostedOdds] = await Promise.all([
-        getTime(),
-        match.findElement(By.className("scb-card-selection-title")).getText(), 
-        match.findElement(By.className("scb-league-title truncate")).getText(), 
-        match.findElement(By.className("scb-card-title truncate")).getText(),
-        match.findElement(By.className("old-odd-box")).getText(),
-        match.findElement(By.className("new-odd-box")).getText()])
+    try{
+        var[matchTime, matchCondition, league, teams, initialOdds, boostedOdds] = await Promise.all([
+            getTime(),
+            match.findElement(By.className("scb-card-selection-title")).getText(), 
+            match.findElement(By.className("scb-league-title truncate")).getText(), 
+            match.findElement(By.className("scb-card-title truncate")).getText(),
+            match.findElement(By.className("old-odd-box")).getText(),
+            match.findElement(By.className("new-odd-box")).getText()
+        ])
+        
+    } catch(error){
+        console.log(error);
+        return null;
+    }
 
     const matchName = `${league} - ${teams}`
 

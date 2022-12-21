@@ -13,29 +13,29 @@ export default async function winamax(driver, client, webdriver)
 
     for(const match of boostedOddsMatches)
     {
-        try{
-            updateMatchesData(matchesData, match, client)
-        }
-        catch(err){
-            console.log(err)
-            continue
-        }
-        
+       await updateMatchesData(matchesData, match, client)
     }
+
     const matches = webdriver.matchesThatCanBeSent('winamax', matchesData)
     return Array.from(matches?.values())
 }
 
 async function updateMatchesData(matchesData, match, client)
 {
-    const [matchTime, matchName, matchCondition, initialOdds, boostedOdds] = await Promise.all([
-        await match.findElement(By.className("sc-dwVMhp eFGtpm")).getText(),
-        await match.findElement(By.className("sc-kQUCNg cQEwjT")).getText(),
-        await match.findElement(By.className("sc-bbfQMc jvzhVB")).getText(),
-        await match.findElement(By.className("sc-gNltnM ehwpQe")).getText(),
-        await match.findElement(By.className("sc-gNltnM hgibdF")).getText()
-    ])
-
+    try{
+        var[matchTime, matchName, matchCondition, initialOdds, boostedOdds] = await Promise.all([
+            match.findElement(By.className("sc-dwVMhp bLNUlz timer")).getText(),
+            match.findElement(By.className("sc-iNzdsf bphelS")).getText(),
+            match.findElement(By.className("sc-iyIzpG jRiLxM")).getText(),
+            match.findElement(By.className("sc-lqUcu eHrpzm")).getText(),
+            match.findElement(By.className("sc-lqUcu eIicjZ")).getText()
+        ])
+        
+    } catch(error){
+        console.log(error);
+        return null;
+    }
+    
     const matchDataString =  matchTime + matchName + matchCondition + initialOdds + boostedOdds
 
     if(matchName.toLowerCase().includes("la grosse cote"))

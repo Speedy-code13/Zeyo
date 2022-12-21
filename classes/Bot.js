@@ -12,8 +12,6 @@ import getFiles from "../functions/getFiles.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))                      
 
-
-
 class Bot extends Client {
     constructor(args)
     {

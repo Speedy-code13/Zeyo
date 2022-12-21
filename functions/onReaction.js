@@ -16,6 +16,7 @@ export default async function onReaction(client, reaction, user, added)
     const emoji = reaction.emoji.id ? `<:${reaction.emoji.name}:${reaction.emoji.id}>` : reaction.emoji.name
 
     if(!rrMessage || !rrMessage.role_emoji.has(emoji)) return
+    
     const roleId = rrMessage.role_emoji.get(emoji)
     const role = reaction.message.guild.roles.resolve(roleId)
     
@@ -26,16 +27,10 @@ export default async function onReaction(client, reaction, user, added)
             addRoleToUser(reaction.message.guild.members.cache.get(user.id), client, role, reaction.message.guild)
             return
         }
-        let rolesOfUser = 0 
-        const member = reaction.message.guild.members.resolve(user)        
+        const member = reaction.message.guild.members.resolve(user)  
 
-        for(const roleId of rrMessage.role_emoji.values())
-        {
-           for(const userRoleId of member.roles.cache.keys())
-           {
-                if(roleId == userRoleId) {rolesOfUser++; continue}
-           }
-        }
+        let rolesOfUser = calcuateReactionsOfMemberOnMessage(member, rrMessage)
+
 
         if(rolesOfUser >= rrMessage.role_limit)
         {
@@ -47,4 +42,19 @@ export default async function onReaction(client, reaction, user, added)
     }
 
     removeRoleFromUser(reaction.message.guild.members.cache.get(user.id), client, role, reaction.message.guild)
+}
+
+function calcuateReactionsOfMemberOnMessage(member, message)
+{
+    var rolesOfUser = 0
+
+    for(const roleId of message.role_emoji.values())
+    {
+       for(const userRoleId of member.roles.cache.keys())
+       {
+            if(roleId == userRoleId) {rolesOfUser++; continue}
+       }
+    }
+
+    return rolesOfUser
 }

@@ -37,7 +37,6 @@ class Command{
         return args
     }
 
-
    getChannelFromArg(arg)
     {
         if(arg == null) return null
@@ -59,8 +58,10 @@ class Command{
     getRoleFromArg(arg, message)
     {
         if(arg == null || message == null) return null
-        if(arg.length < 4) return null
+
+        if(arg?.length < 4) return null
         const roleId = arg.substring(3, arg.length - 1)
+
         return message.guild.roles.resolve(roleId)
     }
     getLocale(string, ...vars)
