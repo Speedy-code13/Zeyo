@@ -1,0 +1,30 @@
+(function() {
+    var smartbannerInitied = false;
+
+    function tryToCheckIfBannerDisplayed() {
+        if ($('.smartbanner').length) {
+            $('body').addClass('smartbanner-up');
+        }
+    }
+
+    function tryToDisplayMobileBanner() {
+        if (!smartbannerInitied) {
+            return;
+        }
+
+        if (/Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent)) {
+            window.smartbanner.publish();
+        }
+
+        tryToCheckIfBannerDisplayed();
+    }
+
+    jQuery(document).ready(function () {
+        document.addEventListener('smartbanner.init', function (e) {
+            setTimeout(function () {
+                smartbannerInitied = true;
+                tryToDisplayMobileBanner();
+            }, 0); // next eventloop
+        });
+    });
+})(window, jQuery);

@@ -34,8 +34,8 @@ class WebDriver{
 
         options = options.addArguments('--headless", "--disable-gpu", "--window-size=1920,1080","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage')
 
-        const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
-    //const driver = await new Builder().forBrowser("chrome").build()
+        //const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+    const driver = await new Builder().forBrowser("chrome").build()
 
         try{
             var matchesDataEmbeds = await this.websites.get(website)(driver, client, this)

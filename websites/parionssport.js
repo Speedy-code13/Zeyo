@@ -8,7 +8,7 @@ export default async function parionssport(driver, client, webdriver)
         const termsAndConditionsButton = await driver.findElement(By.id("popin_tc_privacy_button_2"))
         await termsAndConditionsButton.click()
 
-        var boostedOddsMatchContainer = await driver.findElement(By.className("psel-sport__event")) 
+        var boostedOddsMatchContainer = await driver.findElement(By.className("psel-sport__events")) 
     }
     catch(error) {console.log(error); return null}
     
@@ -20,7 +20,7 @@ export default async function parionssport(driver, client, webdriver)
         var noBetsAvailableElement = await driver.findElement(By.className("psel-no-bet")) 
     }
     catch{
-        for(var i = 1; i < boostedOddsMatches.length; i++)
+        for(let i = 1; i < boostedOddsMatches.length; i++)
         {
             await updateMatchesData(matchesData, boostedOddsMatches[i], client)
         }
@@ -39,8 +39,8 @@ async function updateMatchesData(matchesData, match, client)
         var[matchTime, matchDescription, matchName, boostedOdds] = await Promise.all([
             match.findElement(By.className("psel-block-info-match__hour")).getText(),
             match.findElement(By.className("psel-bet-option")).getText(), 
-            match.findElement(By.className("psel-block-info-match__name")).getText(), 
-            match.findElement(By.className("psel-outcome__data font--cote")).getText(),
+            match.findElement(By.className("psel-match__label")).getText(), 
+            match.findElement(By.className("psel-outcome__data")).getText(),
          ])
 
     } catch(error){

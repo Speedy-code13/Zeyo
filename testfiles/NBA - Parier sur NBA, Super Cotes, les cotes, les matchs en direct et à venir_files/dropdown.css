@@ -1,0 +1,371 @@
+/* COLORS */
+/* SPORTS */
+/*@color_sport-rugby : #518d8b;
+@color_sport-rugby : #788a4c; // /!\ Couleur et icone identique pour tous les rubgy et icone de balon de foot américain...
+@color_sport-aviron : #9bb3d4; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-canoekayak : #9bb3d4; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-natation : #9bb3d4; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-baseball : #638013;
+@color_sport-baseball : #d9e3c0;
+@color_sport-cricket : #d9e3c0; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-biathlon : #008081; // /!\ Couleur du triathlon : vérifier la couleur à appliquer
+//@color_sport-triathlon : #008081;
+@color_sport-triathlon : #cf9896;
+//@color_sport-boxe : #07578e;
+@color_sport-boxe : #06568d;
+@color_sport-escrime : #06568d; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-judo : #06568d; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-halterophilie : #06568d; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-taekwondo : #06568d; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-bobsleigh : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-curling : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-luge : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-patinage : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-skeleton : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-cyclisme : #d3a101;
+@color_sport-cyclisme : #fff;
+@color_sport-cyclisme : #equitation; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-football : #83a40b; // Foot US
+@color_sport-football : #d9e3c0;
+//@color_sport-golf : #71bb20;
+@color_sport-golf : #d9e3c0;
+//@color_sport-handball : #81006d;
+@color_sport-handball : #f1c297;
+@color_sport-futsal : #f1c297; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-floorball : #f1c297; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-badminton : #f1c297; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-hockey : #3f6097; // /!\ Couleur du hockey us
+//@color_sport-hockey : #cd932e; // /!\ Couleur du hockey us
+@color_sport-hockey : #d9e3c0; // Hockey sur gazon
+@color_sport-rug13 : #2c716f;
+@color_sport-sporthiver : #94079e; // /!\ Couleur du ski alpin
+@color_sport-ski : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-bandy : #cd932e; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-ski_de_fond : #6c095d; // /!\ nom d'icone absent
+//@color_sport-snooker : #137613;
+@color_sport-snooker : #137513;
+@color_sport-flechettes : #137513; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-volleyball : #bb7161;
+@color_sport-volleyball : #f1c297;
+@color_sport-pentathlon : #cf9896; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-tiralarc : #cf9896; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-beach_volley : #3db1b5; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-beach_volley : #b02418; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-beach_soccer : #b02418; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-hockey_euro : #597fbe; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-auto : #c43601; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-auto : #7f7e7f; // /!\ Icone absente dans le code : nom à vérifier
+@color_formula1 : #7f7e7f; // /!\ Icone absente dans le code : nom à vérifier
+@color_moto : #7f7e7f; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-tennis_table : #235fa4; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-tennis_table : #f1c297; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-voile : #4588a3; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-voile : #9bb3d4; // /!\ Icone absente dans le code : nom à vérifier
+//@color_sport-waterpolo : #31b4d0; // /!\ Icone absente dans le code : nom à vérifier
+@color_sport-waterpolo : #9bb3d4; // /!\ Icone absente dans le code : nom à vérifier
+@color_pesapallo : #d9e3c0; // /!\ Icone absente dans le code : nom à vérifier
+@color_aussierules : #d9e3c0; // /!\ Icone absente dans le code : nom à vérifier
+@color_petanque : #fff; // /!\ Icone absente dans le code : nom à vérifier*/
+/*NOUVELLES COULEURS */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* /!\ */
+/* FONTS */
+/* BREAKPOINTS */
+/**PROJET CLEANSPORTNCO : TODO ZEBET-API : À NETTOYER**
+************ COLORS COMSTANTS ***********/
+/************ THEME ***********/
+/************ Z-INDEX CONSTANTS ***********/
+/********* MIXINS *********/
+.flex-all-centered {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.Montserrat {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase !important;
+}
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* Main global */
+footer not.grid-delete {
+  background-color: #18242a;
+  color: #d9dddf;
+}
+footer #footer {
+  padding: 40px 0 20px;
+}
+@media (max-width: 1023px) {
+  footer #footer {
+    -webkit-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    padding-top: 0;
+  }
+  footer #footer #footer-aide {
+    padding: 20px 0;
+    margin: 0 -20px;
+  }
+  footer #footer #footer-aide h4 a {
+    color: #fff;
+  }
+  footer #footer #footer-aide h4 i {
+    color: #fff;
+    font-size: 24px;
+  }
+  footer #footer #footer-contact {
+    background-color: #4d585d;
+    margin: 0 -20px 20px;
+    padding: 20px 20px 10px;
+  }
+  footer #footer #footer-contact h4 {
+    color: #fff;
+  }
+  footer #footer #footer-contact ul {
+    width: 200px;
+    margin: 10px auto;
+    font-weight: bold;
+  }
+  footer #footer #footer-contact ul li {
+    color: #fff;
+    border: none;
+  }
+}
+footer #footer > div {
+  padding: 0 20px;
+}
+footer #footer > div h3 {
+  color: #fff;
+  font-weight: bold;
+}
+footer #footer > div h4 {
+  color: #d9dddf;
+  font-weight: bold;
+}
+footer #footer #footer-insert {
+  font-size: 13px;
+}
+@media (max-width: 1023px) {
+  footer #footer #footer-insert {
+    text-align: center;
+  }
+  footer #footer #footer-insert img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+footer #footer #footer-mobile-apps {
+  font-size: 15px;
+}
+@media (max-width: 1023px) {
+  footer #footer #footer-mobile-apps {
+    background-color: #4d585d;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 20px 0;
+    margin: 20px -20px;
+  }
+}
+footer #footer #footer-mobile-apps i.uk-icon-mobile {
+  font-size: 60px;
+  margin: 0 5%;
+}
+footer #footer #footer-informations {
+  font-size: 12px;
+}
+footer #footer #footer-informations .sprite-global {
+  margin-top: 20px;
+}
+@media (max-width: 1023px) {
+  footer #footer #footer-informations {
+    text-align: center;
+  }
+  footer #footer #footer-informations h4 {
+    margin-top: 20px;
+  }
+}
+footer #footer #footer-informations #footer-informations-banking {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+footer #footer #footer-informations a.mga-link {
+  display: block;
+  float: right;
+  text-align: center;
+}
+@media (max-width: 1279px) {
+  footer #footer #footer-informations a.mga-link {
+    display: block;
+    width: 100%;
+    float: none;
+    text-align: center;
+  }
+}
+footer #footer #footer-informations .mga {
+  float: left;
+  height: 50px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  padding-right: 10px;
+}
+@media (max-width: 1279px) {
+  footer #footer #footer-informations .mga {
+    text-align: center;
+    float: none !important;
+  }
+}
+footer #footer #footer-informations .under18 {
+  float: left;
+  height: 50px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  padding-right: 10px;
+}
+@media (max-width: 1279px) {
+  footer #footer #footer-informations .under18 {
+    text-align: center;
+    float: none !important;
+  }
+}
+footer #footer #footer-informations .uk-width-50-adapt {
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  footer #footer #footer-informations .uk-width-50-adapt {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+footer #footer #footer-informations .uk-width-50-adapt + .uk-width-50-adapt {
+  padding-left: 15px;
+}
+@media screen and (max-width: 768px) {
+  footer #footer #footer-informations .uk-width-50-adapt + .uk-width-50-adapt {
+    padding-left: 0;
+  }
+}
+footer #footer #footer-informations .uk-width-50-adapt + .uk-width-50-adapt span {
+  display: block;
+  margin-top: -8px;
+}
+footer #footer #footer-options select {
+  font-weight: bold;
+  background: #fff;
+}
+footer #footer #footer-options .slate {
+  background-color: #fff;
+}
+footer #footer #footer-options .slate select {
+  color: #000;
+}
+footer #footer #footer-options .custom-dropdown--large {
+  font-size: 1.5em;
+}
+footer #footer #footer-options .custom-dropdown--small {
+  font-size: .7em;
+}
+footer #footer #footer-options .custom-dropdown__select {
+  font-size: inherit;
+  padding-right: 3.5em;
+  margin: 0;
+  height: 40px;
+}
+footer #footer #footer-options .custom-dropdown__select--white {
+  background-color: #fff;
+  color: #444;
+}
+@supports (pointer-events: none) and
+      ((-webkit-appearance: none) or
+      (-moz-appearance: none) or
+      (appearance: none)) {
+  .custom-dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .custom-dropdown__select {
+    padding-right: 3.5em;
+    border: 0;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .custom-dropdown::before,
+  .custom-dropdown::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+  .custom-dropdown::after {
+    font-family: FontAwesome;
+    content: "\f107";
+    height: 1em;
+    font-size: 1.625em;
+    line-height: 1;
+    right: 0.5em;
+    top: 27%;
+    z-index: 1;
+  }
+  .custom-dropdown::before {
+    width: 2.7em;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #2f3a3f;
+  }
+  .custom-dropdown__select[disabled] {
+    color: rgba(0, 0, 0, 0.3);
+  }
+  .custom-dropdown.custom-dropdown--disabled::after {
+    color: rgba(0, 0, 0, 0.1);
+  }
+  .custom-dropdown--white::before {
+    top: .5em;
+    bottom: .5em;
+    background-color: #fff;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .custom-dropdown--white::after {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  /* FF only temp fix */
+  @-moz-document url-prefix() {
+    .custom-dropdown--large .custom-dropdown__select {
+      padding-right: 1.3em;
+    }
+    .custom-dropdown--small .custom-dropdown__select {
+      padding-right: .5em;
+    }
+  }
+}
+footer #footer-navbar {
+  background: #2f3a3f;
+}
+footer #footer-navbar li {
+  display: inline-block;
+  padding: 20px 10px;
+}
+@media (max-width: 768px) {
+  footer #footer-navbar li {
+    padding: 10px;
+  }
+}

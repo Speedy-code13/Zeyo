@@ -113,8 +113,8 @@ export default function initEmbeds(client)
     client.embeds.set('bodds_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}bodds on [channel]\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole [role] [betting website(winamax, betlic, zebet, unibet)]`,
-            example: `${client.prefix}bodds on #boosted-odds\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole @winamax winamax`,
+            usage: `${client.prefix}bodds on [channel]\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole [role] [betting website(winamax, winamaxgold, betlic, zebet, unibet, parionssport)]`,
+            example: `${client.prefix}bodds on #boosted-odds\n${client.prefix}bodds off\n${client.prefix}bodds no   tifyrole @winamax winamax`,
             commandName : 'bodds'
         }
         return helpEmbed(client, args, lang)
@@ -150,7 +150,7 @@ export default function initEmbeds(client)
     client.embeds.set('unibet', (matchTime, matchName, matchCondition, initialOdds, boostedOdds) =>{
         return client.embeds.get('universal_betting_website')
         (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.unibet.fr/sport/super-cotes-boostees", "#147b45")
-    })
+    })  
 
     client.embeds.set('parionssport', (matchTime, matchName, matchDescription, boostedOdds) =>{
         const embed = new MessageEmbed()
@@ -165,6 +165,22 @@ export default function initEmbeds(client)
                 .setFooter({text:matchTime})
                 .setURL("https://www.enligne.parionssport.fdj.fr/cotes-boostees")
                 .setColor("#004bc7")
+        
+        return embed
+    })
+
+    client.embeds.set('zebet', (matchCategory, matchDescription, boostedOdds, matchLink) =>{
+        const embed = new MessageEmbed()
+                .setTitle(`${matchCategory}\n‎`)
+                .setDescription(`${matchDescription}\n‎`)
+                .addFields([
+                    {
+                        name: boostedOdds,
+                        value: `‎`
+                    }
+                ])
+                .setURL(matchLink)
+                .setColor("#bd1622")
         
         return embed
     })
