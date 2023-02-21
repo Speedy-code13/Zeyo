@@ -16,6 +16,7 @@ export default async function sendOddsNotifications(client)
         if(channel == null) return;
 
         boostedOddsModel.role_for_website.forEach(async (role_id, website) => {
+            if(website?.toLowerCase() == 'winamax_gold') return
             try{
                 const role = channel.guild.roles.cache.get(role_id);
         
