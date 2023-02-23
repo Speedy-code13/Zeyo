@@ -52,7 +52,7 @@ const lang = {
     bodds_off_success: "Successfully disabled the boosted odds notifier.",
     bodds_on_fail: "The boosted odds notifier is already enabled.",
     bodds_off_fail: "The boosted odds notifier is already disabled.",
-    bodds_notifyrole_success: "Successfully set the boosted odds notifier channel.",
+    bodds_notifyrole_success: "Successfully set the role for this website",
     invalid_website: "The specified website is not in the supported websites list(winamax, winamax_gold, zebet, unibet, parionssport).",
 };
   

@@ -15,7 +15,7 @@ export default async function sendOddsNotifications(client)
 
         if(channel == null) return;
 
-        boostedOddsModel.role_for_website.forEach(async (role_id, website) => {
+         for(let [website, role_id] of boostedOddsModel.role_for_website)  {
             if(website?.toLowerCase() == 'winamax_gold') return
             try{
                 const role = channel.guild.roles.cache.get(role_id);
@@ -48,7 +48,7 @@ export default async function sendOddsNotifications(client)
                 console.log(error);
                 return;
             } 
-        })
+        }
     });
 }
 
