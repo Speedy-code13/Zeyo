@@ -16,7 +16,7 @@ export default async function sendOddsNotifications(client)
         if(channel == null) return;
 
         boostedOddsModel.role_for_website.forEach(async (role_id, website) => {
-            if(webiste && website.toLowerCase() == 'winamax_gold') return
+            if(website?.toLowerCase() == 'winamax_gold') return
             try{
                 const role = channel.guild.roles.cache.get(role_id);
         
@@ -24,7 +24,7 @@ export default async function sendOddsNotifications(client)
         
                 const matchesDataEmbeds = await client.webdriver.getOdds(website, client);
 
-                if(!(matchesDataEmbeds && matchesDataEmbeds.length)) return;
+                if(!matchesDataEmbeds?.length) return;
 
                 //Specific winamax behaviour(different behaviour for golden boosts)
                 if(await handleWinamaxBehaviour(matchesDataEmbeds, channel, website, boostedOddsModel.role_for_website)) return;
@@ -74,8 +74,7 @@ function filterWinamaxEmbeds(matchDataEmbeds)
 
 async function handleWinamaxBehaviour(matchesDataEmbeds, channel, website, role_for_website)
 {
-    if(!(website && website.toLowerCase() == 'winamax')) return false
-
+    if(!(website?.toLowerCase() == 'winamax')) return false
 
     var embeds = filterWinamaxEmbeds(matchesDataEmbeds)
     const threadWinamax = await createOrGetThread(getParsedWebsiteName('winamax'), channel)
