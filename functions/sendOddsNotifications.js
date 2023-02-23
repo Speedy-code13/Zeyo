@@ -24,7 +24,7 @@ export default async function sendOddsNotifications(client)
         
                 const matchesDataEmbeds = await client.webdriver.getOdds(website, client);
 
-                if(!matchesDataEmbeds?.length) return;
+                if(!(matchesDataEmbeds && matchesDataEmbeds.length)) return;
 
                 //Specific winamax behaviour(different behaviour for golden boosts)
                 if(await handleWinamaxBehaviour(matchesDataEmbeds, channel, website, boostedOddsModel.role_for_website)) return;
@@ -74,7 +74,8 @@ function filterWinamaxEmbeds(matchDataEmbeds)
 
 async function handleWinamaxBehaviour(matchesDataEmbeds, channel, website, role_for_website)
 {
-    if(!(website?.toLowerCase() == 'winamax')) return false
+    if(!(website && website.toLowerCase() == 'winamax')) return false
+
 
     var embeds = filterWinamaxEmbeds(matchesDataEmbeds)
     const threadWinamax = await createOrGetThread(getParsedWebsiteName('winamax'), channel)
