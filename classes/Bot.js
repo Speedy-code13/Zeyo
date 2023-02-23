@@ -16,7 +16,7 @@ class Bot extends Client {
     constructor(args)
     {
         super(args)
-        
+            
         this.prefix = args.prefix
         this.commands = new Collection()
         this.statsIntervals = new Collection()
