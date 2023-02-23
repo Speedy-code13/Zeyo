@@ -34,7 +34,7 @@ class WebDriver{
 
         options.excludeSwitches("enable-logging")
 
-        options = options.addArguments('--headless", "--disable-gpu", "--window-size=1920,1080","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage')
+        options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
 
         const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
        // const driver = await new Builder().forBrowser("chrome").build()
