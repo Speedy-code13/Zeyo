@@ -82,7 +82,7 @@ class Bot extends Client {
 
     getCommand(commandName)
     {
-        return this.commands.get(commandName.split(" ")[0].toLowerCase())
+        return this.commands.get(commandName?.split(" ")[0]?.toLowerCase())
     }
 
     async getGuildSettings(guild)

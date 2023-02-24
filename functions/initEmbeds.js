@@ -113,7 +113,7 @@ export default function initEmbeds(client)
     client.embeds.set('bodds_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}bodds on [channel]\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole [role] [betting website(winamax, winamaxgold, betclic, zebet, unibet, parionssport)]`,
+            usage: `${client.prefix}bodds on [channel]\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole [role] [betting website(winamax, winamax_gold, zebet, unibet, parionssport)]`,
             example: `${client.prefix}bodds on #boosted-odds\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole @winamax winamax`,
             commandName : 'bodds'
         }

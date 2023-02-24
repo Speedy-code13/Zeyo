@@ -16,23 +16,23 @@ export default async function sendOddsNotifications(client)
         if(channel == null) return;
 
          for(let [website, role_id] of boostedOddsModel.role_for_website)  {
-            if(website?.toLowerCase() == 'winamax_gold') return
+            if(website?.toLowerCase() == 'winamax_gold') continue
             try{
                 const role = channel.guild.roles.cache.get(role_id);
         
-                if(role == null) return;
+                if(role == null) continue;
         
                 const matchesDataEmbeds = await client.webdriver.getOdds(website, client);
 
-                if(!matchesDataEmbeds?.length) return;
+                if(!matchesDataEmbeds?.length) continue;
 
                 //Specific winamax behaviour(different behaviour for golden boosts)
-                if(await handleWinamaxBehaviour(matchesDataEmbeds, channel, website, boostedOddsModel.role_for_website)) return;
+                if(await handleWinamaxBehaviour(matchesDataEmbeds, channel, website, boostedOddsModel.role_for_website)) continue;
         
                 //Every other behaviour
                 const thread = await createOrGetThread(getParsedWebsiteName(website), channel);
                 
-                if(thread == null) return 
+                if(thread == null) continue 
 
                 await thread.send(`<@&${role_id}>`)
 
@@ -54,7 +54,7 @@ export default async function sendOddsNotifications(client)
 
 /**
  * 
- * Separates normal odds boosts from the golden odds boosts(wnamaxl)
+ * Separates normal odds boosts from the golden odds boosts(winamax)
  * */
 function filterWinamaxEmbeds(matchDataEmbeds)
 {
@@ -77,21 +77,25 @@ async function handleWinamaxBehaviour(matchesDataEmbeds, channel, website, role_
     if(!(website?.toLowerCase() == 'winamax')) return false
 
     var embeds = filterWinamaxEmbeds(matchesDataEmbeds)
-    const threadWinamax = await createOrGetThread(getParsedWebsiteName('winamax'), channel)
 
-    await threadWinamax.send(`<@&${role_for_website.get('winamax')}>`)
-
-    for(const embed of embeds.winamax)
+    if(embeds.winamax.length  != 0)
     {
-        threadWinamax.send({embeds: [embed]})
+        const threadWinamax = await createOrGetThread(getParsedWebsiteName('winamax'), channel)
+
+        await threadWinamax.send(`<@&${role_for_website.get('winamax')}>`)
+    
+        for(const embed of embeds.winamax)
+        {
+            threadWinamax.send({embeds: [embed]})
+        }
     }
- 
+    
     //Handle golden odds on winamax
     if(embeds.winamaxGold.length != 0)
     {
         const threadWinamaxGold = await createOrGetThread(getParsedWebsiteName('winamax_gold'), channel)
 
-        await threadWinamaxGold.send(`<@&${role_for_website.get('wimamax_gold')}>`)
+        await threadWinamaxGold.send(`<@&${role_for_website.get('winamax_gold')}>`)
 
         for(const embed of embeds.winamaxGold)
         {

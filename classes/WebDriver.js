@@ -3,6 +3,7 @@ import * as chrome from 'selenium-webdriver/chrome.js'
 import getFiles from '../functions/getFiles.js'
 import { fileURLToPath} from "url"
 import path from "path"
+import { match } from 'assert'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))       
 
@@ -36,8 +37,8 @@ class WebDriver{
 
         options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
 
-        const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
-       // const driver = await new Builder().forBrowser("chrome").build()
+       // const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+        const driver = await new Builder().forBrowser("chrome").build()
 
         try{
             var matchesDataEmbeds = await this.websites.get(website)(driver, client, this)
@@ -61,12 +62,18 @@ class WebDriver{
             if(!this.alreadySentMatches.get(website)) this.alreadySentMatches.set(website, new Map())
 
             if(this.alreadySentMatches.get(website).has(matchString)) return
+          
          
             matchesThatCanBeSent.set(matchString, matchEmbed)
         }) 
         
-        if(matchesThatCanBeSent.size != 0)
-            this.alreadySentMatches.set(website, matchesThatCanBeSent)
+        if(matchesThatCanBeSent.size != 0){
+            const oldMatchesString = this.alreadySentMatches.get(website)
+            if(oldMatchesString)
+                 this.alreadySentMatches.set(website, new Map([...matchesThatCanBeSent, ...oldMatchesString]));
+            else
+                this.alreadySentMatches.set(website, matchesThatCanBeSent);
+        }
 
         return matchesThatCanBeSent
     }

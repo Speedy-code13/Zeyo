@@ -49,12 +49,15 @@ class Bodds extends Command{
         if(role == null) {this.sendEmbed(message, 'invalid_role', 'error'); return}
 
         const website = args[2]
+        const boostedOddsChannel = this.client.channels.cache.get(boddsSettings.channel_id)
+        if(boostedOddsChannel == null) {this.sendEmbed(message, 'invalid_channel', 'error'); return;}
         if(website == null || !this.client.webdriver.websites.has(website.toLowerCase())) {this.sendEmbed(message, 'invalid_website', 'error'); return}
         boddsSettings.role_for_website.set(website.toLowerCase(), role.id)
 
         boddsSettings.save()
-        const thread = await createOrGetThread(getParsedWebsiteName(website), message.channel);
-        this.sendEmbed(message, 'bodds_notifyrole_success', 'success')
+
+        await createOrGetThread(getParsedWebsiteName(website), boostedOddsChannel);
+        this.sendEmbed(message, 'bodds_notifyrole_success', 'success');
     }
     async getBoddsSettings(guild)
     {
