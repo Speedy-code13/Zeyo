@@ -152,10 +152,10 @@ export default function initEmbeds(client)
         (matchTime, matchName, matchCondition, initialOdds, boostedOdds, "https://www.unibet.fr/sport/super-cotes-boostees", "#147b45")
     })  
 
-    client.embeds.set('parionssport', (matchTime, matchName, matchDescription, boostedOdds) =>{
+    client.embeds.set('parionssport', (matchTime, matchName, matchDescription, boostedOdds, matchCondition) =>{
         const embed = new MessageEmbed()
                 .setTitle(`${matchName}\n‎`)
-                .setDescription(`${matchDescription}\n‎`)
+                .setDescription(`${matchDescription}\n${matchCondition}\n‎`)
                 .addFields([
                     {
                         name: boostedOdds,

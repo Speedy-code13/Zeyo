@@ -36,11 +36,12 @@ export default async function parionssport(driver, client, webdriver)
 async function updateMatchesData(matchesData, match, client) 
 {
     try{
-        var[matchTime, matchDescription, matchName, boostedOdds] = await Promise.all([
+        var[matchTime, matchDescription, matchName, boostedOdds, matchCondition] = await Promise.all([
             match.findElement(By.className("psel-block-info-match__hour")).getText(),
             match.findElement(By.className("psel-bet-option")).getText(), 
             match.findElement(By.className("psel-match__label")).getText(), 
             match.findElement(By.className("psel-outcome__data")).getText(),
+            match.findElement(By.className("psel-market__label")).getText(),
          ])
 
     } catch(error){
@@ -48,9 +49,9 @@ async function updateMatchesData(matchesData, match, client)
         return null;
     }
      
-    const matchDataString = matchTime + matchName + matchDescription + boostedOdds
+    const matchDataString = matchTime + matchName + matchDescription + boostedOdds + matchCondition
 
-    const matchDataEmbed = client.embeds.get('parionssport')(matchTime, matchName, matchDescription, boostedOdds)
+    const matchDataEmbed = client.embeds.get('parionssport')(matchTime, matchName, matchDescription, boostedOdds, matchCondition)
 
     matchesData.set(matchDataString, matchDataEmbed)
 }

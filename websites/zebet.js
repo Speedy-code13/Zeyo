@@ -1,3 +1,4 @@
+import { match } from "assert";
 import { machine } from "os";
 import { By } from "selenium-webdriver";
 export default async function zebet(driver, client, webdriver){
@@ -33,10 +34,11 @@ async function getMatchesEmbedsFromLink(client,webdriver, driver, link){
     for(const matchContainer of matchesContainers){
        
         try{
-            var[matchDescription, boostedOdds] = await Promise.all([
+            var[matchDescription] = await Promise.all([
                 matchContainer.findElement(By.className("bet-question")).getAttribute("innerText"),
-                matchContainer.findElement(By.className("pmq-cote ")).getAttribute("innerText"),
             ])
+
+            var boostedOdds = parseOdds(matchDescription)
     
         } catch(error){
             console.log(error);
@@ -79,4 +81,12 @@ async function getMatchesLinks(driver){
         }
     }
     return links
+}
+
+
+function parseOdds(matchDescription){
+    const numberOfOddsCharacters = 11;
+    if(matchDescription.length > numberOfOddsCharacters) return "N/A"
+
+    return matchDescription.substr(matchDescription.length - numberOfOddsCharacters, matchDescription.length)
 }
