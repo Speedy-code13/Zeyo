@@ -86,7 +86,7 @@ async function getMatchesLinks(driver){
 
 function parseOdds(matchDescription){
     const numberOfOddsCharacters = 11;
-    if(matchDescription.length > numberOfOddsCharacters) return "N/A"
+    if(matchDescription.length < numberOfOddsCharacters) return "N/A"
 
     return matchDescription.substr(matchDescription.length - numberOfOddsCharacters, matchDescription.length)
 }
