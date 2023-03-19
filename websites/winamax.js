@@ -24,11 +24,11 @@ async function updateMatchesData(matchesData, match, client)
 {
     try{
         var[matchTime, matchName, matchCondition, initialOdds, boostedOdds] = await Promise.all([
-            match.findElement(By.className("sc-hgZZql llvWZL")).getText(),
-            match.findElement(By.className("sc-kMHFWB djofyP")).getText(),
-            match.findElement(By.className("sc-hSygng fPWRqk")).getText(),
-            match.findElement(By.className("sc-gklEiM cVLaqp")).getText(),
-            match.findElement(By.className("sc-gklEiM bRqEMG")).getText()
+            match.findElement(By.className("sc-eVBRet bXKSTD")).getText(),
+            match.findElement(By.className("sc-iXsOIg kMmEMp")).getText(),
+            match.findElement(By.className("sc-JzcMS dOFNJp")).getText(),
+            match.findElement(By.className("sc-hdavXI jLwYwm")).getText(),
+            match.findElement(By.className("sc-hdavXI dgIrZN")).getText()
         ])
         
     } catch(error){
