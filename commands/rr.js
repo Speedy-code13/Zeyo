@@ -17,7 +17,7 @@ class Rr extends Command{
 
         if(!this.areValid(args, 5)){ this.sendEmbed(message, 'rr_desc', 'rr_help'); return}
 
-        const channel = this.getChannelFromArg(args[1])
+        const channel = await this.getChannelFromArg(args[1])
 
         if(channel == null) {   this.sendEmbed(message, 'invalid_channel', 'error'); return}
 

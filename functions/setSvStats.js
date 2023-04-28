@@ -3,7 +3,7 @@ import getSvStats from "./getSvStats.js"
 export default async function setSvStats(client, guild_settings)
 {
     const guild = client.guilds.cache.get(guild_settings.guild_id)
-    const channel = client.channels.cache.get(guild_settings.stats_channel_id)
+    const channel = await client.channels.fetch(guild_settings.stats_channel_id)
 
     if(guild == null || channel == null) 
     {

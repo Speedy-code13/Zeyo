@@ -27,7 +27,7 @@ class WelcomeMsg extends Command{
     {
         if(args[1] == null) {this.sendEmbed(message, 'welcomemsg_desc', 'welcomemsg_help'); return}
 
-        const channel = this.getChannelFromArg(args[1])
+        const channel = await this.getChannelFromArg(args[1])
 
         if(channel == null) {   this.sendEmbed(message, 'invalid_channel', 'error'); return}
 

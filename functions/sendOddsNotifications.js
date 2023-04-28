@@ -11,7 +11,7 @@ export default async function sendOddsNotifications(client)
 
     boostedOddsModels.forEach(async (boostedOddsModel) => {
 
-        const channel = client.channels.cache.get(boostedOddsModel.channel_id);
+        const channel = await client.channels.fetch(boostedOddsModel.channel_id);
 
         if(channel == null) return;
 

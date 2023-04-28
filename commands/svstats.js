@@ -20,7 +20,7 @@ class SvStats extends Command{
 
     async subCmdOff(message, guildSettings)
     {
-        const channel = this.client.channels.cache.get(guildSettings.stats_channel_id)
+        const channel = await this.client.channels.fetch(guildSettings.stats_channel_id)
         
         if(channel === undefined){this.sendEmbed(message, 'svstats_off_fail', 'error'); return} 
         

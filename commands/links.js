@@ -51,7 +51,7 @@ class Links extends Command{
 
     async handleLinksLocalRule(message, guildSettings, rule, args)
     {
-        const channel = this.getChannelFromArg(args[1])
+        const channel = await this.getChannelFromArg(args[1])
         if(channel == undefined) {this.sendEmbed(message, 'invalid_channel', 'error'); return}
         if(guildSettings.channel_links == undefined) guildSettings.channel_links = new Map()
 

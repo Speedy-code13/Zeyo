@@ -34,7 +34,7 @@ class Bodds extends Command{
         const boddsSettings = await this.getBoddsSettings(message.guild)
 
         if(args[1] == null){  this.sendEmbed(message, 'bodds_desc', 'bodds_help'); return }
-        const channel = this.getChannelFromArg(args[1])
+        const channel = await this.getChannelFromArg(args[1])
         if(channel == null) {this.sendEmbed(message, 'bodds_on_fail', 'error'); return}
         boddsSettings.channel_id = channel.id
         await boddsSettings.save()
@@ -49,7 +49,7 @@ class Bodds extends Command{
         if(role == null) {this.sendEmbed(message, 'invalid_role', 'error'); return}
 
         const website = args[2]
-        const boostedOddsChannel = this.client.channels.cache.get(boddsSettings.channel_id)
+        const boostedOddsChannel = await this.client.channels.fetch(boddsSettings.channel_id)
         if(boostedOddsChannel == null) {this.sendEmbed(message, 'invalid_channel', 'error'); return;}
         if(website == null || !this.client.webdriver.websites.has(website.toLowerCase())) {this.sendEmbed(message, 'invalid_website', 'error'); return}
         boddsSettings.role_for_website.set(website.toLowerCase(), role.id)

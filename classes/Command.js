@@ -37,10 +37,10 @@ class Command{
         return args
     }
 
-   getChannelFromArg(arg)
+    async getChannelFromArg(arg)
     {
         if(arg == null) return null
-        return this.client.channels.cache.get(arg.substring(2, arg.length -1))
+        return await this.client.channels.fetch(arg.substring(2, arg.length -1))
     }
 
     async getMessageFromArg(arg, channel)
