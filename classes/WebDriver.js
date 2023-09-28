@@ -37,11 +37,13 @@ class WebDriver{
 
         options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
 
-        const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
-       // const driver = await new Builder().forBrowser("chrome").build()
+       // const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+        const driver = await new Builder().forBrowser("chrome").build()
 
         try{
-            var matchesDataEmbeds = await this.websites.get(website)(driver, client, this)
+            var matchesData = await this.websites.get(website)(driver, client)
+            var matchesDataEmbeds = this.matchesThatCanBeSent(website, matchesData)
+            
             driver.quit()
         } catch(err){
             console.log(err)
@@ -75,7 +77,7 @@ class WebDriver{
                 this.alreadySentMatches.set(website, matchesThatCanBeSent);
         }
 
-        return matchesThatCanBeSent
+        return Array.from(matchesThatCanBeSent?.values())
     }
 }
 

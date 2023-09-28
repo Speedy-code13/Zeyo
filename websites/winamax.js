@@ -1,6 +1,6 @@
 import {By, Builder} from 'selenium-webdriver'
 
-export default async function winamax(driver, client, webdriver)
+export default async function winamax(driver, client)
 {
     await driver.get('https://www.winamax.fr/paris-sportifs/sports/100000')
     
@@ -16,19 +16,18 @@ export default async function winamax(driver, client, webdriver)
        await updateMatchesData(matchesData, match, client)
     }
 
-    const matches = webdriver.matchesThatCanBeSent('winamax', matchesData)
-    return Array.from(matches?.values())
+    return matchesData
 }
 
 async function updateMatchesData(matchesData, match, client)
 {
     try{
         var[matchTime, matchName, matchCondition, initialOdds, boostedOdds] = await Promise.all([
-            match.findElement(By.className("sc-dZeWys ckDnQi")).getText(),
-            match.findElement(By.className("sc-cvcbNR cxQMkK")).getText(),
-            match.findElement(By.className("sc-gQUaoo gOkVJi")).getText(),
-            match.findElement(By.className("sc-ilxaJO hGRibd")).getText(),
-            match.findElement(By.className("sc-ilxaJO cWjiuW")).getText()
+            match.findElement(By.className("sc-geuGuN fOfBwL")).getText(),
+            match.findElement(By.className("sc-gyIOMT lbyJKf")).getText(),
+            match.findElement(By.className("sc-gYgiyK hRdfoS")).getText(),
+            match.findElement(By.className("sc-hwByLP jOXrFA")).getText(),
+            match.findElement(By.className("sc-hwByLP ucZsP")).getText()
         ])
         
     } catch(error){

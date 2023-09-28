@@ -83,8 +83,12 @@ export default function initEmbeds(client)
     client.embeds.set('links_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}links on/off [channel]\n${client.prefix}links on/off default(rule for channels by default)`,
-            example: `${client.prefix}links on/off #general\n${client.prefix}links off default`,
+            usage: `${client.prefix}links on/off [channel]
+            ${client.prefix}links on/off default(rule for channels by default)`,
+
+            example: `${client.prefix}links on/off #general
+            ${client.prefix}links off default`,
+
             commandName : 'links'
         }
         return helpEmbed(client, args, lang)
@@ -93,8 +97,13 @@ export default function initEmbeds(client)
     client.embeds.set('autor_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}autor add/remove [role](time_to_remove_it)\n${client.prefix}autor removeAll`,
-            example: `${client.prefix}autor add/remove @cowboy\n${client.prefix}autor add @newmember 12h/s/m\n${client.prefix}autor removeAll`,
+            usage: `${client.prefix}autor add/remove [role](time_to_remove_it)
+            ${client.prefix}autor removeAll`,
+
+            example: `${client.prefix}autor add/remove @cowboy
+            ${client.prefix}autor add @newmember 12h/s/m
+            ${client.prefix}autor removeAll`,
+            
             commandName : 'autor'
         }
         return helpEmbed(client, args, lang)
@@ -103,8 +112,12 @@ export default function initEmbeds(client)
     client.embeds.set('welcomemsg_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}welcomemsg on [channel]\n${client.prefix}welcomemsg off`,
-            example: `${client.prefix}welcomemsg on #welcome\n${client.prefix}welcomemsg off`,
+            usage: `${client.prefix}welcomemsg on [channel]
+            ${client.prefix}welcomemsg off`,
+
+            example: `${client.prefix}welcomemsg on #welcome
+            ${client.prefix}welcomemsg off`,
+
             commandName : 'welcomemsg'
         }
         return helpEmbed(client, args, lang)
@@ -113,8 +126,17 @@ export default function initEmbeds(client)
     client.embeds.set('bodds_help', (description, lang) => {
         const args = {
             description:description,
-            usage: `${client.prefix}bodds on [channel]\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole [role] [betting website(winamax, winamax_gold, zebet, unibet, parionssport)]`,
-            example: `${client.prefix}bodds on #boosted-odds\n${client.prefix}bodds off\n${client.prefix}bodds notifyrole @winamax winamax`,
+            usage: `${client.prefix}bodds on [channel]
+            ${client.prefix}bodds off
+            ${client.prefix}bodds notifyrole [role] [betting website(netbet, winamax, winamax_gold, zebet, unibet, parionssport)]
+            ${client.prefix}bodds notifyrolereset   
+            `,
+
+            example: `${client.prefix}bodds on #boosted-odds
+            ${client.prefix}bodds off
+            ${client.prefix}bodds notifyrole @winamax winamax
+            ${client.prefix}bodds notifyrolereset`,
+
             commandName : 'bodds'
         }
         return helpEmbed(client, args, lang)
@@ -169,21 +191,44 @@ export default function initEmbeds(client)
         return embed
     })
 
-    client.embeds.set('zebet', (matchCategory, matchDescription, boostedOdds, matchLink) =>{
+    client.embeds.set('zebet', (sportName, matchName, matchCondition, initialOdds, boostedOdds) =>{
         const embed = new MessageEmbed()
-                .setTitle(`${matchCategory}\n‎`)
-                .setDescription(`${matchDescription}\n‎`)
+                .setTitle(`${sportName}\n${matchName}`)
+                .setDescription(`${matchCondition}\n‎`)
                 .addFields([
                     {
-                        name: boostedOdds,
+                        name: `~~${initialOdds}~~ ⇒ ${boostedOdds}`,
                         value: `‎`
                     }
                 ])
-                .setURL(matchLink)
+                .setURL("https://www.zebet.fr/fr/sport/71-super_cotes")
                 .setColor("#bd1622")
         
         return embed
     })
+
+    client.embeds.set('netbet', ((categoryName, link, day, hour, condition, choice1OfMatch, choice1AmountOfMatch, choice2OfMatch, choice2AmountOfMatch) =>{
+        const embed = new MessageEmbed()
+                .setTitle(`${categoryName}\n‎`)
+                .setDescription(`${condition}\n‎`)
+                .addFields([
+                    {
+                        name: `${choice1OfMatch} ⇒ ${choice1AmountOfMatch}`,
+                        value: `‎`
+                    }
+                ])
+
+                .addFields([
+                    {
+                        name: `${choice2OfMatch} ⇒ ${choice2AmountOfMatch}`,
+                        value: `‎`  
+                    }
+                ])
+                .setFooter({text:`${day}\n${hour}`})
+                .setURL(link)
+                .setColor("#ebebec")
+        return embed
+    }))
 }
 
 function helpEmbed(client, args, lang)

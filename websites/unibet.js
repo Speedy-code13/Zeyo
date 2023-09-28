@@ -1,6 +1,6 @@
 import {By, Builder} from 'selenium-webdriver'
 
-export default async function unibet(driver, client, webdriver)
+export default async function unibet(driver, client)
 {
     await driver.get('https://www.unibet.fr/sport/super-cotes-boostees')
     
@@ -15,8 +15,8 @@ export default async function unibet(driver, client, webdriver)
     {
         await updateMatchesData(matchesData, match, client)
     }
-    const matches = webdriver.matchesThatCanBeSent('unibet', matchesData)
-    return Array.from(matches?.values())
+
+    return matchesData
 }
 
 async function updateMatchesData(matchesData, match, client) 

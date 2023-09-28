@@ -14,6 +14,7 @@ class Bodds extends Command{
 
         if(args[0]?.toLowerCase() == 'off'){ this.subCmdOff(message); return }
         if(args[0]?.toLowerCase() == 'on'){ this.subCmdOn(args, message); return }
+        if(args[0]?.toLowerCase() == 'notifyrolereset') {this.subCmdNotifyRoleReset(message); return}
 
         if(!this.areValid(args, 3)) {  this.sendEmbed(message, 'bodds_desc', 'bodds_help'); return }
 
@@ -41,6 +42,18 @@ class Bodds extends Command{
         this.sendEmbed(message, 'bodds_on_success', 'success');
     }
 
+    async subCmdNotifyRoleReset(message){
+        const boddsSettings =  await this.getBoddsSettings(message.guild)
+
+        if(boddsSettings.role_for_website.size == 0) {this.sendEmbed(message, 'bodds_notifyrolereset_fail', 'error'); return }
+
+        boddsSettings.role_for_website = new Map()
+
+        this.sendEmbed(message, 'bodds_notifyrolereset_success', 'success');
+
+        boddsSettings.save()
+
+    }
     async subCmdNotifyRole(args, message)
     {
         const boddsSettings =  await this.getBoddsSettings(message.guild)
