@@ -4,7 +4,7 @@ export default function createOddsNotificationsInterval(client)
 {
     const timer = setInterval(async () =>{
         sendOddsNotifications(client)
-    }, 1000 * 60 * 0.2)
+    }, 1000 * 60 * 1)
 
     return timer
 }
