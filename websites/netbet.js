@@ -46,7 +46,7 @@ async function updateMatchesData(client, driver, matchesData, sportLink){
 
         ++choicesIndex
 
-        const matchString = day + hour + condition + choice1AmountOfMatch + choice2AmountOfMatch
+        const matchString = condition + choice1AmountOfMatch + choice2AmountOfMatch
 
         const matchEmbed = client.embeds.get('netbet')(categoryName, sportLink, day, hour, condition, choice1OfMatch, choice1AmountOfMatch, choice2OfMatch, choice2AmountOfMatch)
 

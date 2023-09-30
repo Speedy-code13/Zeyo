@@ -7,4 +7,4 @@ export default function createOddsNotificationsInterval(client)
     }, 1000 * 60 * 1)
 
     return timer
-}
+} 
