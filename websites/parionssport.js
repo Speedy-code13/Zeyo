@@ -9,7 +9,7 @@ export default async function parionssport(driver, client)
         await termsAndConditionsButton.click()
 
     }
-    catch(error) {console.log(error); return null}
+    catch(error) {return null}
 
 
     const matchesData = new Map()

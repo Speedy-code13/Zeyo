@@ -10,9 +10,10 @@ export default async function sendOddsNotifications(client)
     const boostedOddsModels = await BoostedOddsModel.find();
 
     boostedOddsModels.forEach(async (boostedOddsModel) => {
+ 
+        if(boostedOddsModel.channel_id == null) return
 
-        const channel = await client.channels.fetch(boostedOddsModel.channel_id);
-
+        const channel = await client.channels.fetch(boostedOddsModel.channel_id)
         if(channel == null) return;
 
          for(let [website, role_id] of boostedOddsModel.role_for_website)  {
@@ -31,7 +32,7 @@ export default async function sendOddsNotifications(client)
         
                 //Every other behaviour
                 const thread = await createOrGetThread(getParsedWebsiteName(website), channel);
-                
+                    
                 if(thread == null) continue 
 
                 await thread.send(`<@&${role_id}>`)

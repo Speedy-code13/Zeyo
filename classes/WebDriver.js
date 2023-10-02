@@ -13,8 +13,24 @@ class WebDriver{
         this.alreadySentMatches = new Map() 
         this.websites = new Map()
         this.loadWebsites()
+        this.chromeDriver = null
     }
 
+
+   async getWebdriver(){
+        if(this.chromeDriver == null){
+            var options = new chrome.Options().headless()
+
+            options.excludeSwitches("enable-logging")
+    
+            options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
+            //this.chromeDriver = await new Builder().forBrowser("chrome").build()
+            this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+        }
+        
+       return this.chromeDriver
+
+    }
     loadWebsites()
     {
         getFiles(`${this, __dirname}/../websites/`).forEach(async (websiteFileName) =>
@@ -31,23 +47,14 @@ class WebDriver{
     {
         if(!this.websites.has(website)) return null
 
-        var options = new chrome.Options().headless()
-
-        options.excludeSwitches("enable-logging")
-
-        options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
-
-        const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
-       // const driver = await new Builder().forBrowser("chrome").build()
+        const driver = await this.getWebdriver()
 
         try{
             var matchesData = await this.websites.get(website)(driver, client)
             var matchesDataEmbeds = this.matchesThatCanBeSent(website, matchesData)
             
-            driver.quit()
         } catch(err){
             console.log(err)
-            driver.quit()
         } 
   
         return matchesDataEmbeds
