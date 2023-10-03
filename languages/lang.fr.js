@@ -19,7 +19,7 @@ const lang = {
     rrd_desc: "Unbind all emojis from roles on a specific message.",
     svstats_desc: "Manage the channel to hold guild member statistics.",
     svstats_on_fail: "A server statistics channel already exists.",
-    svstats_on_success: "Successfully setted up the server statistics channel.",
+    svstats_on_success: "The server statistics have been successfully set up.",
     svstats_off_success: "Successfully removed the server statistics channel/category.",
     svstats_off_fail: "Couldn't find the server statistics channel.",
     usage:"Usage:",
@@ -53,7 +53,9 @@ const lang = {
     bodds_on_fail: "The boosted odds notifier is already enabled.",
     bodds_off_fail: "The boosted odds notifier is already disabled.",
     bodds_notifyrole_success: "Successfully set the role for this website",
-    invalid_website: "The specified website is not in the supported websites list(winamax, winamax_gold, zebet, unibet, parionssport).",
+    bodds_notifyrolereset_success: "Successfully resetted all notify roles.",
+    bodds_notifyrolereset_fail: "There were no notify roles to reset.",
+    invalid_website: "The specified website is not in the supported websites list(netbet, winamax, winamax_gold, zebet, unibet, parionssport).",
 };
   
 export default lang

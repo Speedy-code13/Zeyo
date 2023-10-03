@@ -19,7 +19,7 @@ const lang = {
     rrd_desc: "Unbind all emojis from roles on a specific message.",
     svstats_desc: "Manage the channel to hold guild member statistics.",
     svstats_on_fail: "A server statistics channel already exists.",
-    svstats_on_success: "Successfully setted up the server statistics channel.",
+    svstats_on_success: "The server statistics have been successfully set up.",
     svstats_off_success: "Successfully removed the server statistics channel/category.",
     svstats_off_fail: "Couldn't find the server statistics channel.",
     usage:"Usage:",

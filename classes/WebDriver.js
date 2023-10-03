@@ -17,18 +17,29 @@ class WebDriver{
     }
 
 
-   async getWebdriver(){
-        if(this.chromeDriver == null){
-            var options = new chrome.Options().headless()
 
-            options.excludeSwitches("enable-logging")
-    
-            options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
-            //this.chromeDriver = await new Builder().forBrowser("chrome").build()
-            this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+    async buildWebdriver(){
+        var options = new chrome.Options().headless()
+ 
+        options.excludeSwitches("enable-logging")
+
+        options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
+        //this.chromeDriver = await new Builder().forBrowser("chrome").build()
+        this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+    }
+
+    async getWebdriver(){
+        if(this.chromeDriver == null){
+            await this.buildWebdriver()
         }
-        
-       return this.chromeDriver
+
+        try {
+            await this.chromeDriver.get("https://www.google.com/")
+        } catch {
+            await this.buildWebdriver()
+        } finally {
+            return this.chromeDriver
+        }
 
     }
     loadWebsites()
