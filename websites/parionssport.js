@@ -26,25 +26,41 @@ export default async function parionssport(driver, client)
     return null
 }
 
+async function parseMatchNameFromScoreboard(scoreboard){
+    const opponents = await scoreboard.findElements(By.className("psel-opponent__name"))
+
+    if(opponents?.length == 0) return "Null"
+
+    let matchName = await opponents[0].getText()
+
+    for(let i = 1; i < opponents.length; ++i){
+        matchName += " vs "
+        matchName += await opponents[i].getText()
+    }
+
+
+    return matchName
+}
+
 async function updateMatchesData(matchesData, driver, client) 
 {
     try{
-        var[matchTimes, matchDescriptions, opponents, boostedOdds, matchConditions] = await Promise.all([
+        var[matchTimes, matchDescriptions, scoreboards, boostedOdds, matchConditions] = await Promise.all([
             driver.findElements(By.className("psel-timer")),
             driver.findElements(By.className("psel-bet-option")), 
-            driver.findElements(By.className("psel-opponent__name")), 
+            driver.findElements(By.className("psel-scoreboard")), 
             driver.findElements(By.className("psel-outcome__data")),
             driver.findElements(By.className("psel-market__label")),
          ])
-
+         
     } catch(error){
         console.log(error);
         return null;
     }
-    let opponentsIndex = 0
      for(let i = 0; i < matchTimes.length; ++i){
         let matchTime = await matchTimes[i].getText()
-        let matchName =  await opponents[opponentsIndex++].getText() + " vs " + await opponents[opponentsIndex++].getText()
+
+        let matchName = await parseMatchNameFromScoreboard(scoreboards[i])
         let matchDescription = await matchDescriptions[i].getText()
         let boostedOdd = await boostedOdds[i].getText()
         let matchCondition = await matchConditions[i].getText()
