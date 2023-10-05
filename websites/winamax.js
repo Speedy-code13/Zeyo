@@ -21,13 +21,16 @@ export default async function winamax(driver, client)
 
 async function updateMatchesData(matchesData, match, client)
 {
+    const paragraphs = await match.findElements(By.css("p"))
+    const spans = await match.findElements(By.css("span"))
+
     try{
-        var[matchTime, matchName, matchCondition, initialOdds, boostedOdds] = await Promise.all([
-            match.findElement(By.className("sc-geuGuN fOfBwL")).getText(),
-            match.findElement(By.className("sc-gyIOMT lbyJKf")).getText(),
-            match.findElement(By.className("sc-gYgiyK hRdfoS")).getText(),
-            match.findElement(By.className("sc-hwByLP jOXrFA")).getText(),
-            match.findElement(By.className("sc-hwByLP ucZsP")).getText()
+        var[matchName, matchCondition, matchTime, initialOdds, boostedOdds] = await Promise.all([
+            paragraphs[0].getText(),
+            paragraphs[1].getText(),
+            spans[1].getText(),
+            spans[2].getText(),
+            spans[3].getText()
         ])
         
     } catch(error){

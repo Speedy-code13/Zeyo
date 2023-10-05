@@ -56,7 +56,7 @@ class Bodds extends Command{
     }
     async subCmdNotifyRole(args, message)
     {
-        const boddsSettings =  await this.getBoddsSettings(message.guild)
+        const boddsSettings = await this.getBoddsSettings(message.guild)
 
         const role = this.getRoleFromArg(args[1], message)
         if(role == null) {this.sendEmbed(message, 'invalid_role', 'error'); return}
