@@ -38,7 +38,7 @@ async function updateMatchesData(matchesData, match, client)
         return null;
     }
     
-    const matchDataString =  matchTime + matchName + matchCondition + initialOdds + boostedOdds
+    const matchDataString =  matchName + matchCondition + initialOdds + boostedOdds
 
     if(matchName.toLowerCase().includes("la grosse cote"))
         var matchDataEmbed = client.embeds.get('winamax_gold')(matchTime, matchName, matchCondition, initialOdds, boostedOdds)

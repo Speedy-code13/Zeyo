@@ -39,7 +39,6 @@ class WebDriver{
                 try{await driver.quit()}
                 catch{}
         } finally {
-            await this.buildWebdriver()
             return this.chromeDriver
         }
 
