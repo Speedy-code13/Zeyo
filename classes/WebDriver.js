@@ -24,8 +24,8 @@ class WebDriver{
         options.excludeSwitches("enable-logging")
 
         options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
-        //this.chromeDriver = await new Builder().forBrowser("chrome").build()
-        this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+        this.chromeDriver = await new Builder().forBrowser("chrome").build()
+      //  this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
     }
 
     async getWebdriver(){
@@ -36,8 +36,8 @@ class WebDriver{
         try {
             await this.chromeDriver.get("https://www.google.com/")
         } catch {
-                try{await driver.quit()}
-                catch{}
+                try{await this.chromeDriver.quit()}
+                finally{await this.buildWebdriver()}
         } finally {
             return this.chromeDriver
         }
