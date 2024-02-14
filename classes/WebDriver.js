@@ -37,6 +37,7 @@ class WebDriver{
             await this.chromeDriver.get("https://www.google.com/")
         } catch {
                 try{await this.chromeDriver.quit()}
+                catch{}
                 finally{await this.buildWebdriver()}
         } finally {
             return this.chromeDriver
