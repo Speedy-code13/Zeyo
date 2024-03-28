@@ -2,8 +2,6 @@ import {By, Builder} from 'selenium-webdriver'
 
 export default async function parionssport(driver, client)
 {
-    await driver.get('https://www.enligne.parionssport.fdj.fr/cotes-boostees')
-    
     try{ 
         const termsAndConditionsButton = await driver.findElement(By.id("popin_tc_privacy_button_2"))
         await termsAndConditionsButton.click()

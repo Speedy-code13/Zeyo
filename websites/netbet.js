@@ -16,6 +16,25 @@ export default async function netbet(driver, client){
     return matchesData
 }
 
+async function getSportsLinks(driver){
+   
+    try{ var boostedOddsMatchContainer = await driver.findElement(By.id("competitions-block")) }
+    catch(error){console.log(error); return null} 
+    
+    var topCategories = await boostedOddsMatchContainer.findElement(By.className("uk-accordion"))
+   // const boostedOddsMatches = await boostedOddsMatchContainer.findElements(By.xpath("./child::*"))
+    var links = await topCategories.findElements(By.css("a"));
+
+    const sportsLinks = []
+
+    for(let i = 1; i < links.length; i += 2){
+        sportsLinks.push(await links[i].getAttribute("href"))
+    }
+
+    return sportsLinks.length ? sportsLinks : null
+    
+}
+
 async function updateMatchesData(client, driver, matchesData, sportLink){
     await driver.get(sportLink)
 
@@ -71,24 +90,3 @@ function getMatchCategoryParsedName(link){
 
 }
 
-async function getSportsLinks(driver){
-
-    await driver.get("https://www.netbet.fr/super-cotes")
-
-   
-    try{ var boostedOddsMatchContainer = await driver.findElement(By.id("competitions-block")) }
-    catch(error){console.log(error); return null} 
-    
-    var topCategories = await boostedOddsMatchContainer.findElement(By.className("uk-accordion"))
-   // const boostedOddsMatches = await boostedOddsMatchContainer.findElements(By.xpath("./child::*"))
-    var links = await topCategories.findElements(By.css("a"));
-
-    const sportsLinks = []
-
-    for(let i = 1; i < links.length; i += 2){
-        sportsLinks.push(await links[i].getAttribute("href"))
-    }
-
-    return sportsLinks.length ? sportsLinks : null
-    
-}

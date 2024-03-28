@@ -1,9 +1,7 @@
 import {By, Builder} from 'selenium-webdriver'
 
 export default async function winamax(driver, client)
-{
-    await driver.get('https://www.winamax.fr/paris-sportifs/sports/100000')
-    
+{  
     try{ var boostedOddsMatchContainer = await driver.findElement(By.className("ReactVirtualized__Grid__innerScrollContainer")) }
     catch(error) {console.log(error); return null}
     
@@ -21,17 +19,30 @@ export default async function winamax(driver, client)
 
 async function updateMatchesData(matchesData, match, client)
 {
-    const paragraphs = await match.findElements(By.css("p"))
     const spans = await match.findElements(By.css("span"))
+    const divs = await match.findElements(By.css("div"))
+
+    // for(var i = 0; i < divs.length; ++i)
+    // {
+    //     try
+    //     {
+    //         console.log(i + " " + await divs[i].getText())
+    //     }
+    //     catch
+    //     {
+
+    //     }
+    // }
+
 
     try{
         var[matchName, matchCondition, matchTime, initialOdds, boostedOdds] = await Promise.all([
-            paragraphs[0].getText(),
-            paragraphs[1].getText(),
+            divs[18].getText(),
+            divs[19].getText(),
             spans[1].getText(),
             spans[2].getText(),
             spans[3].getText()
-        ])
+        ])  
         
     } catch(error){
         console.log(error);

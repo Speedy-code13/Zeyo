@@ -12,8 +12,18 @@ class WebDriver{
     {
         this.alreadySentMatches = new Map() 
         this.websites = new Map()
+        this.websitesLinks = new Map()
+        this.initWebsitesLinks()
         this.loadWebsites()
         this.chromeDriver = null
+    }
+
+    initWebsitesLinks()
+    {
+        this.websitesLinks.set("netbet", "https://www.netbet.fr/super-cotes")
+        this.websitesLinks.set("parionssport", "https://www.enligne.parionssport.fdj.fr/cotes-boostees")
+        this.websitesLinks.set("winamax", "https://www.winamax.fr/paris-sportifs/sports/100000")
+        this.websitesLinks.set("zebet", "https://www.zebet.fr/fr/sport/71-super_cotes")
     }
 
 
@@ -25,19 +35,23 @@ class WebDriver{
 
         options = options.addArguments("--headless", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars")
         this.chromeDriver = await new Builder().forBrowser("chrome").build()
-      //  this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
+      // this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build()
     }
 
-    async getWebdriver(){
+    async getWebdriver(link){
         if(this.chromeDriver == null){
             await this.buildWebdriver()
         }
-
         try {
-            await this.chromeDriver.get("https://www.google.com/")
+            await this.chromeDriver.get(link)
         } catch {
                 try{await this.chromeDriver.quit()}
-                finally{await this.buildWebdriver()}
+                finally{
+                    await this.buildWebdriver()
+                    try{
+                        await this.chromeDriver.get(link)
+                    } catch {}
+                }
         } finally {
             return this.chromeDriver
         }
@@ -59,7 +73,7 @@ class WebDriver{
     {
         if(!this.websites.has(website)) return null
 
-        const driver = await this.getWebdriver()
+        const driver = await this.getWebdriver(this.websitesLinks.get(website))
 
         try{
             var matchesData = await this.websites.get(website)(driver, client)

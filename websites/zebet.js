@@ -3,7 +3,6 @@ import { machine } from "os";
 import { By } from "selenium-webdriver";
 
 export default async function zebet(driver, client){
-    await driver.get("https://www.zebet.fr/fr/sport/71-super_cotes")
 
     try{ var boostedOddsMatchContainer = await driver.findElement(By.className("item-content uk-width-1-1 supercote-container")) }
     catch(error) {console.log(error); return null}
