@@ -3,6 +3,7 @@ import * as chrome from 'selenium-webdriver/chrome.js'
 import getFiles from '../functions/getFiles.js'
 import { fileURLToPath} from "url"
 import path from "path"
+import os from "os"
 import { match } from 'assert'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))       
@@ -30,8 +31,10 @@ class WebDriver{
 
     async buildWebdriver(){
         var options = new chrome.Options();
-        
-        options.setChromeBinaryPath("/usr/bin/chromium-browser")
+
+        if(os.platform()!= "win32")
+            options.setChromeBinaryPath("/usr/bin/chromium-browser")
+
         options.excludeSwitches("enable-logging")
 
         options = options.addArguments("--headless=new", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars");
