@@ -30,7 +30,8 @@ class WebDriver{
 
     async buildWebdriver(){
         var options = new chrome.Options();
- 
+        
+        options.setChromeBinaryPath("/usr/bin/chromium-browser")
         options.excludeSwitches("enable-logging")
 
         options = options.addArguments("--headless=new", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars");
