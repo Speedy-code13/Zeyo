@@ -5,6 +5,7 @@ import { fileURLToPath} from "url"
 import path from "path"
 import os from "os"
 import { match } from 'assert'
+import {exec} from 'child_process'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))       
 
@@ -44,15 +45,20 @@ class WebDriver{
 
     async getWebdriver(link){
         if(this.chromeDriver == null){
-            await this.buildWebdriver()
+            try{
+                await this.buildWebdriver()
+            }
+            catch{
+
+            }
         }
         try {
             await this.chromeDriver.get(link)
         } catch {
                 try{await this.chromeDriver.quit()}
                 finally{
-                    await this.buildWebdriver()
                     try{
+                        await this.buildWebdriver()
                         await this.chromeDriver.get(link)
                     } catch {}
                 }
