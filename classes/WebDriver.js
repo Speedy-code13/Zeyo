@@ -38,25 +38,24 @@ class WebDriver{
         options.excludeSwitches("enable-logging")
 
         options = options.addArguments("--headless=new", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars");
-        this.chromeDriver = await new Builder().forBrowser("chrome").build()
-       //this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
+        //this.chromeDriver = await new Builder().forBrowser("chrome").build()
+       this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
     }
 
     async getWebdriver(link){
         if(this.chromeDriver == null){
             await this.buildWebdriver()
         }
-
         try {
             await this.chromeDriver.get(link)
         } catch {
                 try{await this.chromeDriver.quit()}
-                catch{
-
+                finally{
+                    await this.buildWebdriver()
+                    try{
+                        await this.chromeDriver.get(link)
+                    } catch {}
                 }
-                await this.buildWebdriver()
-                await this.chromeDriver.get(link)
-
         } finally {
             return this.chromeDriver
         }
