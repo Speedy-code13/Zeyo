@@ -32,8 +32,11 @@ class WebDriver{
 
     async buildWebdriver(){
         if(this.chromeDriver)
-           await this.chromeDriver.quit().catch();
-        
+        {
+            await this.chromeDriver.quit().catch();
+            this.chromeDriver = null;
+        }
+
         var options = new chrome.Options();
 
         if(os.platform()!= "win32")
@@ -48,19 +51,21 @@ class WebDriver{
 
     async getWebdriver(link){
         if(this.chromeDriver == null){
-                await this.buildWebdriver()
+            await this.buildWebdriver()
         }
+
         try {
             await this.chromeDriver.get(link)
         } catch {
-                try{await this.chromeDriver.quit()}
-                finally{
-                    try{
-                        await this.buildWebdriver()
-                        await this.chromeDriver.get(link)
-                    } catch {}
+            console.log("Failed getting to the link, recreating the instance.")
+                try{
+                    await this.buildWebdriver()
+                    await this.chromeDriver.get(link)
+                } catch {
+                    console.log("Failed recreating the instance")
                 }
-        } finally {
+        }
+        finally {
             return this.chromeDriver
         }
 
