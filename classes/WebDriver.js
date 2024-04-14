@@ -31,6 +31,9 @@ class WebDriver{
 
 
     async buildWebdriver(){
+        if(this.chromeDriver)
+           await this.chromeDriver.quit().catch();
+        
         var options = new chrome.Options();
 
         if(os.platform()!= "win32")
@@ -45,12 +48,7 @@ class WebDriver{
 
     async getWebdriver(link){
         if(this.chromeDriver == null){
-            try{
                 await this.buildWebdriver()
-            }
-            catch{
-
-            }
         }
         try {
             await this.chromeDriver.get(link)
