@@ -2,7 +2,6 @@ import {By, Builder} from 'selenium-webdriver'
 
 export default async function unibet(driver, client)
 {
-    await driver.get('https://www.unibet.fr/sport/super-cotes-boostees')
     
     try{ var boostedOddsMatchContainer = await driver.findElement(By.className("sbc-container sbc-container-desktop")) }
     catch(error) {console.log(error); return null}

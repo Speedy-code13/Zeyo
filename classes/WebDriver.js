@@ -24,6 +24,7 @@ class WebDriver{
     {
         this.websitesLinks.set("netbet", "https://www.netbet.fr/super-cotes")
         this.websitesLinks.set("parionssport", "https://www.enligne.parionssport.fdj.fr/cotes-boostees")
+        this.websitesLinks.set("unibet", "'https://www.unibet.fr/sport/super-cotes-boostees")
         this.websitesLinks.set("winamax", "https://www.winamax.fr/paris-sportifs/sports/100000")
         this.websitesLinks.set("zebet", "https://www.zebet.fr/fr/sport/71-super_cotes")
     }
