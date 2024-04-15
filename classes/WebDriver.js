@@ -33,7 +33,19 @@ class WebDriver{
     async buildWebdriver(){
         if(this.chromeDriver)
         {
-            await this.chromeDriver.quit().catch();
+            try{
+           
+                await this.chromeDriver.quit();
+            }
+            catch{
+                console.log("Failed quitting.")
+            }
+            finally{
+                process.exec("ps aux | grep chrome | awk ' { print $2 } ' | xargs kill -9", (err, stdout, stderr) =>{
+                    if(err)
+                        console.log(err)
+                })
+            }
             this.chromeDriver = null;
         }
 
@@ -57,12 +69,12 @@ class WebDriver{
         try {
             await this.chromeDriver.get(link)
         } catch {
-            console.log("Failed getting to the link, recreating the instance.")
+            console.log(`Failed getting to the link(${link}), recreating the instance.`)
                 try{
                     await this.buildWebdriver()
                     await this.chromeDriver.get(link)
                 } catch {
-                    console.log("Failed recreating the instance")
+                    console.log(`Failed recreating the instance(${link})`)
                 }
         }
         finally {
