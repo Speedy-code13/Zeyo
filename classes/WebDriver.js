@@ -31,34 +31,39 @@ class WebDriver{
 
 
     async buildWebdriver(){
-        if(this.chromeDriver)
-        {
-            try{
-           
-                await this.chromeDriver.quit();
+        try{
+            if(this.chromeDriver)
+            {
+                try{
+                    await this.chromeDriver.quit();
+                }
+                catch{
+                    console.log("Failed quitting.")
+                }
+                finally{
+                    process.exec("ps aux | grep chrome | awk ' { print $2 } ' | xargs kill -9", (err, stdout, stderr) =>{
+                        if(err)
+                            console.log(err)
+                    })
+                }
+                this.chromeDriver = null;
             }
-            catch{
-                console.log("Failed quitting.")
-            }
-            finally{
-                process.exec("ps aux | grep chrome | awk ' { print $2 } ' | xargs kill -9", (err, stdout, stderr) =>{
-                    if(err)
-                        console.log(err)
-                })
-            }
-            this.chromeDriver = null;
         }
+        finally{
 
-        var options = new chrome.Options();
+            var options = new chrome.Options();
 
-        if(os.platform()!= "win32")
-            options.setChromeBinaryPath("/usr/bin/chromium-browser")
+            if(os.platform()!= "win32")
+                options.setChromeBinaryPath("/usr/bin/chromium-browser")
+    
+            options.excludeSwitches("enable-logging")
+    
+            options = options.addArguments("--headless=new", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars");
+            //this.chromeDriver = await new Builder().forBrowser("chrome").build()
+           this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
+        }
+        
 
-        options.excludeSwitches("enable-logging")
-
-        options = options.addArguments("--headless=new", "--disable-gpu", "start-maximized","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "disable-infobars");
-        //this.chromeDriver = await new Builder().forBrowser("chrome").build()
-       this.chromeDriver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
     }
 
     async getWebdriver(link){
